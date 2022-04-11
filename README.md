@@ -44,6 +44,10 @@
 
 * Stop the project: `make stop`
 
+### 🧪 Tests execution
+
+* Execution the project tests: `make test`
+
 ## 🍿 Project explanation
 
 > **This section will be available soon**

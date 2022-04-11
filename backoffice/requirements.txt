@@ -1,0 +1,10 @@
+MarkupSafe==2.0.1
+Flask==1.1.4
+mysql-connector-python==8.0.28
+gunicorn==20.1.0
+Flask-Cors==3.0.10
+yoyo-migrations==7.3.2
+pymysql==1.0.2
+injector==0.19.0
+flask-classful==0.15.0b1
+amqpstorm==2.10.4
