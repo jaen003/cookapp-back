@@ -1,0 +1,47 @@
+version: '3.7'
+
+services:
+    
+    rabbitmq:
+        image: 'rabbitmq:3.8.22-management-alpine'
+        container_name: cookapp_rabbitmq
+        hostname: 'cookapp_rabbitmq'
+        restart: unless-stopped
+        ports:
+            - 5630:5672
+            - 8090:15672
+        env_file:
+            - ./.env
+
+    mysql:
+        image: 'mariadb:10.6'
+        container_name: 'cookapp_mysql'
+        hostname: 'cookapp_mysql'
+        restart: unless-stopped
+        ports:                                                           
+            - 3360:3306
+        env_file:
+            - ./.env
+
+    mssql:
+        image: 'mcr.microsoft.com/mssql/server:2019-CU15-ubuntu-20.04'
+        container_name: 'cookapp_mssql'
+        hostname: 'cookapp_mssql'
+        restart: unless-stopped
+        ports:                                                           
+            - 1431:1433
+        env_file:
+            - ./.env
+
+    mongodb:
+        image: 'mongo:5.0.6-focal'
+        container_name: 'cookapp_mongodb'
+        hostname: 'cookapp_mongodb'
+        restart: unless-stopped
+        ports:                                                           
+            - 27018:27017
+        env_file:
+            - ./.env
+    
+    
+    
