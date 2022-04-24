@@ -4,14 +4,13 @@
  *
 """
 
-from .valueObjects.EmployeeName   import EmployeeName
-from .valueObjects.EmployeeEmail  import EmployeeEmail
-from .valueObjects.EmployeeId     import EmployeeId
-from src.restaurant.domain        import RestaurantId
-from .valueObjects.EmployeeStatus import EmployeeStatus
-from .valueObjects.EmployeeRole   import EmployeeRole
-from .events.EmployeeCreated      import EmployeeCreated
-from src.shared.domain            import AggregateRoot 
+from ..valueObjects.EmployeeName   import EmployeeName
+from ..valueObjects.EmployeeEmail  import EmployeeEmail
+from ..valueObjects.EmployeeId     import EmployeeId
+from src.restaurant.domain         import RestaurantId
+from ..valueObjects.EmployeeStatus import EmployeeStatus
+from ..valueObjects.EmployeeRole   import EmployeeRole
+from src.shared.domain             import AggregateRoot 
 
 """
  *
@@ -56,31 +55,6 @@ class Employee( AggregateRoot ):
         self.__role         = role
         self.__status       = status
         self.__restaurantId = restaurantId
-
-    @classmethod
-    def createWaiter(
-        cls,
-        id           : EmployeeId,
-        email        : EmployeeEmail,
-        name         : EmployeeName,
-        restaurantId : RestaurantId,
-    ) -> object:
-        self = cls(
-            id           = id,
-            email        = email,
-            name         = name,
-            role         = EmployeeRole.createWaiter(),
-            status       = EmployeeStatus.createEnabled(),
-            restaurantId = restaurantId,
-        )
-        self.recordEvent( EmployeeCreated(
-            id           = id,
-            email        = email,
-            name         = name,
-            role         = self.getRole(),
-            restaurantId = restaurantId
-        ) )
-        return self
     
     def getId( self ) -> EmployeeId:
         return self.__id

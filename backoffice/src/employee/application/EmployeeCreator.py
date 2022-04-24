@@ -10,7 +10,8 @@ from src.restaurant.domain import RestaurantId
 from src.employee.domain   import EmployeeRepository
 from src.shared.domain     import DomainEventsPublisher
 from src.restaurant.domain import RestaurantRepository
-from src.employee.domain   import Employee
+from src.employee.domain   import Chef
+from src.employee.domain   import Waiter
 from src.employee.domain   import EmployeeId
 from src.restaurant.domain import Restaurant
 from src.shared.domain     import ServerInternalErrorException
@@ -60,7 +61,7 @@ class EmployeeCreator:
         restaurantId : RestaurantId,
     ) -> None:
         # Variables
-        employee   : Employee
+        employee   : Waiter
         restaurant : Restaurant
         # Code
         restaurant = self.__restaurantRepository.findById( restaurantId )
@@ -72,7 +73,32 @@ class EmployeeCreator:
         employee = self.__repository.findByNameAndRestaurant( name, restaurant )
         if employee is not None:
             raise EmployeeNameAlreadyCreatedException( name )
-        employee = Employee.createWaiter( id, email, name, restaurantId )
+        employee = Waiter.create( id, email, name, restaurantId )
+        if not self.__repository.save( employee ):
+            raise ServerInternalErrorException()
+        self.__eventPublisher.publish( employee.pullEvents() )
+    
+    def createChef( 
+        self, 
+        id           : EmployeeId,
+        email        : EmployeeEmail, 
+        name         : EmployeeName,
+        restaurantId : RestaurantId,
+    ) -> None:
+        # Variables
+        employee   : Chef
+        restaurant : Restaurant
+        # Code
+        restaurant = self.__restaurantRepository.findById( restaurantId )
+        if restaurant is None:
+            raise RestaurantNotFoundException( restaurantId )
+        employee = self.__repository.findByEmail( email )
+        if employee is not None:
+            raise EmployeeAlreadyCreatedException( email )
+        employee = self.__repository.findByNameAndRestaurant( name, restaurant )
+        if employee is not None:
+            raise EmployeeNameAlreadyCreatedException( name )
+        employee = Chef.create( id, email, name, restaurantId )
         if not self.__repository.save( employee ):
             raise ServerInternalErrorException()
         self.__eventPublisher.publish( employee.pullEvents() )
