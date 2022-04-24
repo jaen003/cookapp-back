@@ -71,6 +71,35 @@ class MysqlEmployeeRepository( EmployeeRepository ):
                 cursor.close()
                 connection.close()
     
+    def update( self, employee : Employee ) -> bool:
+        # Variables
+        query      : str
+        values     : tuple
+        connection : MySQLConnection
+        cursor     : MySQLCursor
+        # Code
+        query = 'UPDATE Employee SET emp_email = %s, emp_name = %s, emp_role = %s, ' \
+                'emp_status = %s WHERE emp_id = %s'
+        try:
+            connection = self.__databaseConnector.getConnection()
+            cursor     = connection.cursor()
+            values = (
+                employee.getEmail().getValue(),
+                employee.getName().getValue(),
+                employee.getRole().getValue(),
+                employee.getStatus().getValue(),
+                employee.getId().getValue()
+            )
+            cursor.execute( query, values )
+            connection.commit()
+            return True
+        except Exception:
+            return False
+        finally:
+            if connection is not None:
+                cursor.close()
+                connection.close()
+    
     def mapEntity( self, record : list ) -> Employee:
         # Variables
         employee : Employee
@@ -102,6 +131,33 @@ class MysqlEmployeeRepository( EmployeeRepository ):
             cursor     = connection.cursor()
             values = (
                 name.getValue(),
+                restaurantId.getValue(),
+            )
+            cursor.execute( query, values )
+            record = cursor.fetchone()
+            return self.mapEntity( record )
+        except Exception:
+            return None
+        finally:
+            if connection is not None:
+                cursor.close()
+                connection.close()
+    
+    def findByIdAndRestaurant( self, id : EmployeeId, restaurantId : RestaurantId ) -> Employee:
+        # Variables
+        query      : str
+        values     : tuple
+        connection : MySQLConnection
+        cursor     : MySQLCursor
+        record     : list
+        # Code
+        query = 'SELECT emp_id, emp_email, emp_name, emp_role, emp_status, rest_id ' \
+                'FROM Employee WHERE emp_status != 2 AND emp_id = %s AND rest_id = %s'
+        try:
+            connection = self.__databaseConnector.getConnection()
+            cursor     = connection.cursor()
+            values = (
+                id.getValue(),
                 restaurantId.getValue(),
             )
             cursor.execute( query, values )

@@ -11,6 +11,7 @@ from src.restaurant.domain         import RestaurantId
 from ..valueObjects.EmployeeStatus import EmployeeStatus
 from ..valueObjects.EmployeeRole   import EmployeeRole
 from src.shared.domain             import AggregateRoot 
+from ..events.EmployeeRoleChanged  import EmployeeRoleChanged
 
 """
  *
@@ -73,3 +74,11 @@ class Employee( AggregateRoot ):
 
     def getRestaurantId( self ) -> RestaurantId:
         return self.__restaurantId
+    
+    def changeToWaiter( self ) -> None:
+        if self.__role.isChef():
+            self.__role = EmployeeRole.createWaiter()
+            self.recordEvent( EmployeeRoleChanged(
+                id   = self.__id,
+                role = self.__role
+            ) )

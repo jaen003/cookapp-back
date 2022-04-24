@@ -4,4 +4,5 @@
  *
 """
 
-from .EmployeeCreator import *
+from .EmployeeCreator     import *
+from .EmployeeRoleChanger import *

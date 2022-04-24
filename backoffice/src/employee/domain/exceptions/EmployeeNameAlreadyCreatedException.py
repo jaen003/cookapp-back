@@ -4,7 +4,7 @@
  *
 """
 
-from src.shared.domain          import DomainException
+from src.shared.domain           import DomainException
 from ..valueObjects.EmployeeName import EmployeeName
 
 """
@@ -21,7 +21,7 @@ class EmployeeNameAlreadyCreatedException( DomainException ):
      *
     """
 
-    __USER_ALREADY_CREATED = 140
+    __EMPLOYEE_ALREADY_CREATED = 140
 
     """
      *
@@ -31,6 +31,6 @@ class EmployeeNameAlreadyCreatedException( DomainException ):
 
     def __init__( self, name : EmployeeName ) -> None:
         super().__init__( 
-            self.__USER_ALREADY_CREATED,
+            self.__EMPLOYEE_ALREADY_CREATED,
             'The employee name {} has already been created'.format( name.getValue() ),
         )
