@@ -40,7 +40,7 @@ class UuidValueObject:
         return self.__value
 
     def __isAnComparableObject( self, other : object ) -> bool:
-        return ( other is not None and type( self ) == type( other ) )
+        return ( other is not None and issubclass( type( self ), type( other ) ) )
 
     def isEmpty( self ) -> bool:
         return self.__value == ''

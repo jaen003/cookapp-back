@@ -14,5 +14,5 @@ from .events.RabbitmqDomainEventsPublisher   import *
 from .events.DomainEventsInformation         import *
 from .eventBus.RabbitmqQueueNameFormatter    import *
 from .eventBus.RabbitmqExchangeNameFormatter import *
-from .events.ConsumedDomainEventsAggregator  import *
+from .events.DomainEventsAggregator          import *
 from .InjectorDependecyServiceAggregator     import *
