@@ -7,6 +7,7 @@
 from flask_classful                import FlaskView
 from flask_classful                import route
 from src.employee.application      import EmployeeCreator
+from src.employee.application      import EmployeeRoleChanger
 from src.employee.infrastructure   import MysqlEmployeeRepository
 from src.restaurant.infrastructure import MysqlRestaurantRepository
 from src.shared.domain             import DomainEventsPublisher
@@ -53,7 +54,7 @@ class EmployeePutController( FlaskView ):
         creator = EmployeeCreator(
             repository           = MysqlEmployeeRepository(),
             restaurantRepository = MysqlRestaurantRepository(),
-            eventPublisher       = self.__eventPublisher,
+            eventPublisher       = self.__eventPublisher
         )
         try:
             creator.createWaiter(
@@ -76,13 +77,33 @@ class EmployeePutController( FlaskView ):
         creator = EmployeeCreator(
             repository           = MysqlEmployeeRepository(),
             restaurantRepository = MysqlRestaurantRepository(),
-            eventPublisher       = self.__eventPublisher,
+            eventPublisher       = self.__eventPublisher
         )
         try:
             creator.createChef(
                 id           = EmployeeId( data.get( 'emp_id' ) ),
                 email        = EmployeeEmail( data.get( 'emp_email' ) ),
                 name         = EmployeeName( data.get( 'emp_name' ) ),
+                restaurantId = RestaurantId( data.get( 'rest_id' ) )
+            )
+            return {}, 200
+        except DomainException as exc:
+            return { 'code' : exc.getCode() }, 400
+    
+    @route( 'changeTo/waiter', methods = ['PUT'] )
+    def changeRoleToWaiter( self ) -> None:
+        # Variables
+        changer : EmployeeRoleChanger
+        data    : dict[str, str | int]
+        # Code
+        data    = request.json
+        changer = EmployeeRoleChanger(
+            repository     = MysqlEmployeeRepository(),
+            eventPublisher = self.__eventPublisher
+        )
+        try:
+            changer.changeToWaiter(
+                id           = EmployeeId( data.get( 'emp_id' ) ),
                 restaurantId = RestaurantId( data.get( 'rest_id' ) )
             )
             return {}, 200

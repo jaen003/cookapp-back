@@ -21,7 +21,7 @@ class EmployeeAlreadyCreatedException( DomainException ):
      *
     """
 
-    __USER_ALREADY_CREATED = 139
+    __EMPLOYEE_ALREADY_CREATED = 139
 
     """
      *
@@ -31,6 +31,6 @@ class EmployeeAlreadyCreatedException( DomainException ):
 
     def __init__( self, email : EmployeeEmail ) -> None:
         super().__init__( 
-            self.__USER_ALREADY_CREATED,
+            self.__EMPLOYEE_ALREADY_CREATED,
             'The employee {} has already been created'.format( email.getValue() ),
         )
