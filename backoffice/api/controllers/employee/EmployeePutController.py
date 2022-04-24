@@ -109,3 +109,23 @@ class EmployeePutController( FlaskView ):
             return {}, 200
         except DomainException as exc:
             return { 'code' : exc.getCode() }, 400
+    
+    @route( 'changeTo/chef', methods = ['PUT'] )
+    def changeRoleToChef( self ) -> None:
+        # Variables
+        changer : EmployeeRoleChanger
+        data    : dict[str, str | int]
+        # Code
+        data    = request.json
+        changer = EmployeeRoleChanger(
+            repository     = MysqlEmployeeRepository(),
+            eventPublisher = self.__eventPublisher
+        )
+        try:
+            changer.changeToChef(
+                id           = EmployeeId( data.get( 'emp_id' ) ),
+                restaurantId = RestaurantId( data.get( 'rest_id' ) )
+            )
+            return {}, 200
+        except DomainException as exc:
+            return { 'code' : exc.getCode() }, 400

@@ -58,3 +58,19 @@ class EmployeeRoleChanger:
         if not self.__repository.update( employee ):
             raise ServerInternalErrorException()
         self.__eventPublisher.publish( employee.pullEvents() )
+    
+    def changeToChef( 
+        self, 
+        id           : EmployeeId,
+        restaurantId : RestaurantId,
+    ) -> None:
+        # Variables
+        employee : Waiter
+        # Code
+        employee = self.__repository.findByIdAndRestaurant( id, restaurantId )
+        if employee is None:
+            raise EmployeeNotFoundException( id )
+        employee.changeToChef()
+        if not self.__repository.update( employee ):
+            raise ServerInternalErrorException()
+        self.__eventPublisher.publish( employee.pullEvents() )
