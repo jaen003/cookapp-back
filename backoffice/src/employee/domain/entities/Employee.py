@@ -82,3 +82,11 @@ class Employee( AggregateRoot ):
                 id   = self.__id,
                 role = self.__role
             ) )
+    
+    def changeToChef( self ) -> None:
+        if self.__role.isWaiter():
+            self.__role = EmployeeRole.createChef()
+            self.recordEvent( EmployeeRoleChanged(
+                id   = self.__id,
+                role = self.__role
+            ) )
