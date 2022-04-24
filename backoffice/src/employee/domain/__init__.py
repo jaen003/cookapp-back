@@ -5,7 +5,9 @@
 """
 
 from .EmployeeRepository                             import *
-from .Employee                                       import *
+from .entities.Employee                              import *
+from .entities.Chef                                  import *
+from .entities.Waiter                                import *
 from .valueObjects.EmployeeEmail                     import *
 from .valueObjects.EmployeeId                        import *
 from .valueObjects.EmployeeName                      import *

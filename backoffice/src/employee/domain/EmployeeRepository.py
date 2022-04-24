@@ -5,7 +5,7 @@
 """
 
 from abc                         import abstractmethod
-from .Employee                   import Employee
+from .entities.Employee          import Employee
 from .valueObjects.EmployeeEmail import EmployeeEmail
 from src.restaurant.domain       import RestaurantId
 from .valueObjects.EmployeeName  import EmployeeName
