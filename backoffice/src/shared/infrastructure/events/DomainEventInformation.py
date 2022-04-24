@@ -16,14 +16,6 @@ class DomainEventInformation:
 
     """
      *
-     * Constants
-     *
-    """
-
-    __CONTEXT_NAME = 'backoffice'
-
-    """
-     *
      * Attributes 
      *
     """
@@ -55,7 +47,10 @@ class DomainEventInformation:
         return domainEvent.getEventName()
 
     def formatRabbitmqQueueName( self ) -> str:
-        return '{}.{}'.format( self.__CONTEXT_NAME, self.getEventName() );
+        return 'backoffice.{}'.format( self.getEventName() );
+    
+    def isConsumedEvent( self ) -> bool:
+        return len( self.__subscriberClasses ) > 0
     
 
 

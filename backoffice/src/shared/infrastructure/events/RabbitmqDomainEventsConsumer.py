@@ -74,8 +74,9 @@ class RabbitmqDomainEventsConsumer:
         self.__injector                = injector
 
     def consume( self ) -> None:
-        for eventInformation in self.__eventsInformation.getAll():            
-            Thread( target = self.__consumeEvent, args = ( eventInformation, ) ).start()
+        for eventInformation in self.__eventsInformation.getAll():  
+            if eventInformation.isConsumedEvent():          
+                Thread( target = self.__consumeEvent, args = ( eventInformation, ) ).start()
 
     def __consumeEvent( self, eventInformation ) -> None:
         # Variables
@@ -167,7 +168,7 @@ class RabbitmqDomainEventsConsumer:
         properties   : dict[str, Any] = {}
     ) -> None:
         # Variables
-        channel : Channel                
+        channel : Channel    
         # Code                
         if not properties:
             properties = { 'delivery_mode' : self.__messageDeliveryMode }

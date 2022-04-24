@@ -58,15 +58,16 @@ class RabbitmqEventBusConfigurer:
         # Code
         for eventInformation in self.__eventsInformation.getAll():
             eventName = eventInformation.getEventName()
-            queueName = self.__queueNameFormatter.format( eventInformation )
-            self.__declareQueue( queueName )
             self.__declareExchange( eventName )
-            self.__bindQueue( queueName, eventName )
-            deadLetterQueueName = self.__queueNameFormatter.formatDeadLetter( eventInformation )
-            deadLetterExchangeName = self.__exchangeNameFormatter.formatDeadLetter( eventName )
-            self.__declareQueue( deadLetterQueueName )
-            self.__declareExchange( deadLetterExchangeName )
-            self.__bindQueue( deadLetterQueueName, deadLetterExchangeName )                        
+            if eventInformation.isConsumedEvent():
+                queueName = self.__queueNameFormatter.format( eventInformation )
+                self.__declareQueue( queueName )
+                self.__bindQueue( queueName, eventName )
+                deadLetterQueueName = self.__queueNameFormatter.formatDeadLetter( eventInformation )
+                deadLetterExchangeName = self.__exchangeNameFormatter.formatDeadLetter( eventName )
+                self.__declareQueue( deadLetterQueueName )
+                self.__declareExchange( deadLetterExchangeName )
+                self.__bindQueue( deadLetterQueueName, deadLetterExchangeName )                        
     
     def __bindQueue( self, queueName : str, exchangeName : str ) -> None:
         # Variables

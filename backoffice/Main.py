@@ -15,7 +15,7 @@ from src.shared.infrastructure import MysqlDatabaseConfigurer
 from src.shared.domain         import DomainEventsPublisher
 from injector                  import Binder
 from injector                  import Injector
-from src.shared.infrastructure import ConsumedDomainEventsAggregator
+from src.shared.infrastructure import DomainEventsAggregator
 from src.shared.infrastructure import InjectorDependecyServiceAggregator
 from types                     import ModuleType
 from importlib                 import import_module
@@ -75,7 +75,7 @@ def addServices( binder : Binder ) -> None:
     )
 
 def main() -> None:
-    injector = Injector( [addServices, ConsumedDomainEventsAggregator] )
+    injector = Injector( [addServices, DomainEventsAggregator] )
     initServices( injector )
     addControllers( injector )
     CORS( app, resources = { r"/api/*" : { "origins" : "*" } } )

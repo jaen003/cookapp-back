@@ -27,7 +27,7 @@ class IntValueObject:
         return self.__value
     
     def __isAnComparableObject( self, other : object ) -> bool:
-        return ( other is not None and type( self ) == type( other ) )
+        return ( other is not None and issubclass( type( self ), type( other ) ) )
     
     def equals( self, other : object ) -> bool:
         # Variables
@@ -35,7 +35,7 @@ class IntValueObject:
         # Code
         equalObjects = False
         if self.__isAnComparableObject( other ):
-            equalObjects = self.__value == other.getValue()
+            equalObjects = self.__value == other.getValue()            
         return equalObjects
     
     def isLessThan( self, other : object ) -> bool:
