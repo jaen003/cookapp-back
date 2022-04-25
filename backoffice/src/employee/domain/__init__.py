@@ -18,3 +18,4 @@ from .exceptions.EmployeeAlreadyCreatedException     import *
 from .exceptions.EmployeeNameAlreadyCreatedException import *
 from .exceptions.EmployeeNotFoundException           import *
 from .events.EmployeeRoleChanged                     import *
+from .events.EmployeeDeleted                         import *
