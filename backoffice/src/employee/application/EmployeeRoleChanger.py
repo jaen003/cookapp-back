@@ -7,7 +7,7 @@
 from src.restaurant.domain import RestaurantId
 from src.employee.domain   import EmployeeRepository
 from src.shared.domain     import DomainEventsPublisher
-from src.employee.domain   import Waiter
+from src.employee.domain   import Employee
 from src.employee.domain   import EmployeeId
 from src.shared.domain     import ServerInternalErrorException
 from src.employee.domain   import EmployeeNotFoundException
@@ -46,10 +46,10 @@ class EmployeeRoleChanger:
     def changeToWaiter( 
         self, 
         id           : EmployeeId,
-        restaurantId : RestaurantId,
+        restaurantId : RestaurantId
     ) -> None:
         # Variables
-        employee : Waiter
+        employee : Employee
         # Code
         employee = self.__repository.findByIdAndRestaurant( id, restaurantId )
         if employee is None:
@@ -62,10 +62,10 @@ class EmployeeRoleChanger:
     def changeToChef( 
         self, 
         id           : EmployeeId,
-        restaurantId : RestaurantId,
+        restaurantId : RestaurantId
     ) -> None:
         # Variables
-        employee : Waiter
+        employee : Employee
         # Code
         employee = self.__repository.findByIdAndRestaurant( id, restaurantId )
         if employee is None:

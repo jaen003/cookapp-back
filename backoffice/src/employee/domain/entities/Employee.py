@@ -13,6 +13,7 @@ from ..valueObjects.EmployeeRole   import EmployeeRole
 from src.shared.domain             import AggregateRoot 
 from ..events.EmployeeRoleChanged  import EmployeeRoleChanged
 from ..events.EmployeeDeleted      import EmployeeDeleted
+from ..events.EmployeeRenamed      import EmployeeRenamed
 
 """
  *
@@ -96,4 +97,11 @@ class Employee( AggregateRoot ):
         self.__status = EmployeeStatus.createDeleted()
         self.recordEvent( EmployeeDeleted(
             id = self.__id
+        ) )
+    
+    def rename( self, newName : EmployeeName ) -> None:
+        self.__name = newName
+        self.recordEvent( EmployeeRenamed(
+            id   = self.__id,
+            name = self.__name
         ) )
