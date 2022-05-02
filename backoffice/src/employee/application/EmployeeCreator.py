@@ -58,7 +58,7 @@ class EmployeeCreator:
         id           : EmployeeId,
         email        : EmployeeEmail, 
         name         : EmployeeName,
-        restaurantId : RestaurantId,
+        restaurantId : RestaurantId
     ) -> None:
         # Variables
         employee   : Waiter
@@ -83,7 +83,7 @@ class EmployeeCreator:
         id           : EmployeeId,
         email        : EmployeeEmail, 
         name         : EmployeeName,
-        restaurantId : RestaurantId,
+        restaurantId : RestaurantId
     ) -> None:
         # Variables
         employee   : Chef
@@ -95,7 +95,7 @@ class EmployeeCreator:
         employee = self.__repository.findByEmail( email )
         if employee is not None:
             raise EmployeeAlreadyCreatedException( email )
-        employee = self.__repository.findByNameAndRestaurant( name, restaurant )
+        employee = self.__repository.findByNameAndRestaurant( name, restaurantId )
         if employee is not None:
             raise EmployeeNameAlreadyCreatedException( name )
         employee = Chef.create( id, email, name, restaurantId )

@@ -7,3 +7,4 @@
 from .EmployeeCreator     import *
 from .EmployeeRoleChanger import *
 from .EmployeeDeletor     import *
+from .EmployeeRenamer     import *

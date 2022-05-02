@@ -11,6 +11,8 @@ from src.employee.domain   import Employee
 from src.employee.domain   import EmployeeId
 from src.shared.domain     import ServerInternalErrorException
 from src.employee.domain   import EmployeeNotFoundException
+from src.employee.domain   import EmployeeName
+from src.employee.domain   import EmployeeNameAlreadyCreatedException
 
 """
  *
@@ -18,7 +20,7 @@ from src.employee.domain   import EmployeeNotFoundException
  *
 """
 
-class EmployeeDeletor:
+class EmployeeRenamer:
 
     """
      *
@@ -43,18 +45,22 @@ class EmployeeDeletor:
         self.__repository     = repository
         self.__eventPublisher = eventPublisher
     
-    def delete(
+    def rename(
         self, 
         id           : EmployeeId,
+        name         : EmployeeName,
         restaurantId : RestaurantId
     ) -> None:
         # Variables
         employee : Employee
         # Code
+        employee = self.__repository.findByNameAndRestaurant( name, restaurantId )
+        if employee is not None:
+            raise EmployeeNameAlreadyCreatedException( name )
         employee = self.__repository.findByIdAndRestaurant( id, restaurantId )
         if employee is None:
             raise EmployeeNotFoundException( id )
-        employee.delete()
+        employee.rename( name )
         if not self.__repository.update( employee ):
             raise ServerInternalErrorException()
         self.__eventPublisher.publish( employee.pullEvents() )
