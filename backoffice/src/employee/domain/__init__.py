@@ -20,3 +20,4 @@ from .exceptions.EmployeeNotFoundException           import *
 from .events.EmployeeRoleChanged                     import *
 from .events.EmployeeDeleted                         import *
 from .events.EmployeeRenamed                         import *
+from .events.EmployeeBlocked                         import *
