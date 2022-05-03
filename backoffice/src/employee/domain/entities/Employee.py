@@ -14,6 +14,7 @@ from src.shared.domain             import AggregateRoot
 from ..events.EmployeeRoleChanged  import EmployeeRoleChanged
 from ..events.EmployeeDeleted      import EmployeeDeleted
 from ..events.EmployeeRenamed      import EmployeeRenamed
+from ..events.EmployeeBlocked      import EmployeeBlocked
 
 """
  *
@@ -104,4 +105,10 @@ class Employee( AggregateRoot ):
         self.recordEvent( EmployeeRenamed(
             id   = self.__id,
             name = self.__name
+        ) )
+    
+    def block( self ) -> None:
+        self.__status = EmployeeStatus.createBlocked()
+        self.recordEvent( EmployeeBlocked(
+            id = self.__id
         ) )

@@ -9,6 +9,7 @@ from flask_classful                import route
 from src.employee.application      import EmployeeCreator
 from src.employee.application      import EmployeeRoleChanger
 from src.employee.application      import EmployeeRenamer
+from src.employee.application      import EmployeeBlocker
 from src.employee.infrastructure   import MysqlEmployeeRepository
 from src.restaurant.infrastructure import MysqlRestaurantRepository
 from src.shared.domain             import DomainEventsPublisher
@@ -146,6 +147,26 @@ class EmployeePutController( FlaskView ):
             renamer.rename(
                 id           = EmployeeId( data.get( 'emp_id' ) ),
                 name         = EmployeeName( data.get( 'emp_name' ) ),
+                restaurantId = RestaurantId( data.get( 'rest_id' ) )
+            )
+            return {}, 200
+        except DomainException as exc:
+            return { 'code' : exc.getCode() }, 400
+    
+    @route( 'block', methods = ['PUT'] )
+    def block( self ) -> None:
+        # Variables
+        blocker : EmployeeBlocker
+        data    : dict[str, str | int]
+        # Code
+        data    = request.json
+        blocker = EmployeeBlocker(
+            repository     = MysqlEmployeeRepository(),
+            eventPublisher = self.__eventPublisher
+        )
+        try:
+            blocker.block(
+                id           = EmployeeId( data.get( 'emp_id' ) ),
                 restaurantId = RestaurantId( data.get( 'rest_id' ) )
             )
             return {}, 200
