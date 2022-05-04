@@ -47,7 +47,7 @@ class EmployeeCreator:
         self, 
         repository           : EmployeeRepository,
         restaurantRepository : RestaurantRepository,
-        eventPublisher        : DomainEventsPublisher
+        eventPublisher       : DomainEventsPublisher
     ) -> None:
         self.__repository           = repository
         self.__restaurantRepository = restaurantRepository

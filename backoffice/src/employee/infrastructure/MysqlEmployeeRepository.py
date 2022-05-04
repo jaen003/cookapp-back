@@ -18,7 +18,7 @@ from mysql.connector.cursor     import MySQLCursor
 
 """
  *
- * Classes 
+ * Class 
  *
 """
 

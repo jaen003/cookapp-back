@@ -32,5 +32,5 @@ class EmployeeNameAlreadyCreatedException( DomainException ):
     def __init__( self, name : EmployeeName ) -> None:
         super().__init__( 
             self.__EMPLOYEE_NAME_ALREADY_CREATED,
-            'The employee name {} has already been created'.format( name.getValue() ),
+            'The employee name {} has already been created'.format( name.getValue() )
         )

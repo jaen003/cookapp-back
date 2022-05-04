@@ -32,5 +32,5 @@ class EmployeeNotFoundException( DomainException ):
     def __init__( self, id : EmployeeId ) -> None:
         super().__init__( 
             self.__EMPLOYEE_NOT_FOUND,
-            'The employee {} has not been found'.format( id.getValue() ),
+            'The employee {} has not been found'.format( id.getValue() )
         )
