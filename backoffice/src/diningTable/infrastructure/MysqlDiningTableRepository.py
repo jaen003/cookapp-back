@@ -69,6 +69,34 @@ class MysqlDiningTableRepository( DiningTableRepository ):
                 cursor.close()
                 connection.close()
     
+    def update( self, diningTable : DiningTable ) -> bool:
+        # Variables
+        query      : str
+        values     : tuple
+        connection : MySQLConnection
+        cursor     : MySQLCursor
+        # Code
+        query = 'UPDATE Dining_Table SET tab_number = %s, tab_description = %s, ' \
+                'tab_status = %s WHERE tab_id = %s'
+        try:
+            connection = self.__databaseConnector.getConnection()
+            cursor     = connection.cursor()
+            values = (
+                diningTable.getNumber().getValue(),
+                diningTable.getDescription().getValue(),
+                diningTable.getStatus().getValue(),
+                diningTable.getId().getValue(),
+            )
+            cursor.execute( query, values )
+            connection.commit()
+            return True
+        except Exception:
+            return False
+        finally:
+            if connection is not None:
+                cursor.close()
+                connection.close()
+    
     def mapEntity( self, record : list ) -> DiningTable:
         # Variables
         diningTable : DiningTable
@@ -99,6 +127,33 @@ class MysqlDiningTableRepository( DiningTableRepository ):
             cursor     = connection.cursor()
             values = (
                 number.getValue(),
+                restaurantId.getValue(),
+            )
+            cursor.execute( query, values )
+            record = cursor.fetchone()
+            return self.mapEntity( record )
+        except Exception:
+            return None
+        finally:
+            if connection is not None:
+                cursor.close()
+                connection.close()
+    
+    def findByIdAndRestaurant( self, id : DiningTableId, restaurantId : RestaurantId ) -> DiningTable:
+        # Variables
+        query      : str
+        values     : tuple
+        connection : MySQLConnection
+        cursor     : MySQLCursor
+        record     : list
+        # Code
+        query = 'SELECT tab_id, tab_number, tab_description, tab_status, rest_id ' \
+                'FROM Dining_Table WHERE tab_status != 2 AND tab_id = %s AND rest_id = %s'
+        try:
+            connection = self.__databaseConnector.getConnection()
+            cursor     = connection.cursor()
+            values = (
+                id.getValue(),
                 restaurantId.getValue(),
             )
             cursor.execute( query, values )
