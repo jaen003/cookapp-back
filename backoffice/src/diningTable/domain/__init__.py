@@ -12,3 +12,4 @@ from .valueObjects.DiningTableStatus                      import *
 from .events.DiningTableCreated                           import *
 from .DiningTableRepository                               import *
 from .exceptions.DiningTableNumberAlreadyCreatedException import *
+from .events.DiningTableDeleted                           import *

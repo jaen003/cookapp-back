@@ -5,3 +5,4 @@
 """
 
 from .DiningTableCreator import *
+from .DiningTableDeletor import *

@@ -8,12 +8,9 @@ from flask_classful                import FlaskView
 from flask_classful                import route
 from src.employee.application      import EmployeeDeletor
 from src.employee.infrastructure   import MysqlEmployeeRepository
-from src.restaurant.infrastructure import MysqlRestaurantRepository
 from src.shared.domain             import DomainEventsPublisher
 from src.shared.domain             import DomainException
 from src.employee.domain           import EmployeeId
-from src.employee.domain           import EmployeeName
-from src.employee.domain           import EmployeeEmail
 from src.restaurant.domain         import RestaurantId
 from flask                         import request
 

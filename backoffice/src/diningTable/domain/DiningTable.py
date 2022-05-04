@@ -11,6 +11,7 @@ from src.restaurant.domain                import RestaurantId
 from .valueObjects.DiningTableStatus      import DiningTableStatus
 from src.shared.domain                    import AggregateRoot
 from .events.DiningTableCreated           import DiningTableCreated
+from .events.DiningTableDeleted           import DiningTableDeleted
 
 """
  *
@@ -90,3 +91,9 @@ class DiningTable( AggregateRoot ):
             restaurantId = restaurantId
         ) )
         return self
+    
+    def delete( self ) -> None:
+        self.__status = DiningTableStatus.createDeleted()
+        self.recordEvent( DiningTableDeleted(
+            id = self.__id
+        ) )
