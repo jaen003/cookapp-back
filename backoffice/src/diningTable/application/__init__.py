@@ -4,6 +4,7 @@
  *
 """
 
-from .DiningTableCreator       import *
-from .DiningTableDeletor       import *
-from .DiningTableNumberChanger import *
+from .DiningTableCreator            import *
+from .DiningTableDeletor            import *
+from .DiningTableNumberChanger      import *
+from .DiningTableDescriptionChanger import *
