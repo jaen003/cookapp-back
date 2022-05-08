@@ -41,7 +41,7 @@ class DiningTableDeleteController( FlaskView ):
         self.__eventPublisher = eventBus
 
     @route( '', methods = ['DELETE'] )
-    def createWaiter( self ) -> None:
+    def delete( self ) -> None:
         # Variables
         deletor : DiningTableDeletor
         data    : dict[str, str | int]

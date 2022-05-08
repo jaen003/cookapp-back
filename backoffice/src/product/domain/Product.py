@@ -13,6 +13,7 @@ from .events.ProductCreated           import ProductCreated
 from src.restaurant.domain            import RestaurantId
 from .valueObjects.ProductStatus      import ProductStatus
 from .events.ProductRenamed           import ProductRenamed
+from .events.ProductDeleted           import ProductDeleted
 
 """
  *
@@ -107,4 +108,10 @@ class Product( AggregateRoot ):
         self.recordEvent( ProductRenamed(
             id   = self.__id,
             name = self.__name
+        ) )
+    
+    def delete( self ) -> None:
+        self.__status = ProductStatus.createDeleted()
+        self.recordEvent( ProductDeleted(
+            id = self.__id
         ) )
