@@ -9,7 +9,7 @@ from ..valueObjects.EmployeeName import EmployeeName
 
 """
  *
- * Classes 
+ * Class 
  *
 """
 

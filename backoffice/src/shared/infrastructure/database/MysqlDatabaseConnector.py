@@ -12,7 +12,7 @@ from time                       import sleep
 
 """
  *
- * Classes 
+ * Class 
  *
 """
 

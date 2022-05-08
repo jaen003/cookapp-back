@@ -12,7 +12,7 @@ from src.shared.domain import IntValueObject
  *
 """
 
-class DiningTableStatus( IntValueObject ):
+class ProductStatus( IntValueObject ):
 
     """
      *

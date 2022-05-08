@@ -9,7 +9,7 @@ from ..exceptions.InvalidDiningTableNumberException import InvalidDiningTableNum
 
 """
  *
- * Classes 
+ * Class 
  *
 """
 
@@ -32,9 +32,9 @@ class DiningTableNumber( IntValueObject ):
     
     def __init__( self, value : int ) -> None:
         super().__init__( value )
-        if not self.isValid():
+        if not self.__isValid():
             raise InvalidDiningTableNumberException( value )
     
-    def isValid( self ) -> bool:
+    def __isValid( self ) -> bool:
         return self.isGreaterThanOrEqual( IntValueObject( self.__MINIMUN_NUMBER ) ) and \
             self.isLessThanOrEqual( IntValueObject( self.__MAXIMUM_NUMBER ) )

@@ -5,6 +5,7 @@
 """
 
 from abc                         import abstractmethod
+from abc                         import ABCMeta
 from .entities.Employee          import Employee
 from .valueObjects.EmployeeEmail import EmployeeEmail
 from src.restaurant.domain       import RestaurantId
@@ -17,7 +18,7 @@ from .valueObjects.EmployeeId    import EmployeeId
  *
 """
 
-class EmployeeRepository:
+class EmployeeRepository( metaclass = ABCMeta ):
 
     """
      *

@@ -8,7 +8,7 @@ from src.shared.domain import StringValueObject
 
 """
  *
- * Classes 
+ * Class 
  *
 """
 

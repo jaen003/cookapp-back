@@ -15,7 +15,7 @@ from mysql.connector.cursor     import MySQLCursor
 
 """
  *
- * Classes 
+ * Class 
  *
 """
 
@@ -38,7 +38,7 @@ class MysqlRestaurantRepository( RestaurantRepository ):
     def __init__( self ) -> object:
         self.__databaseConnector = MysqlDatabaseConnector()
     
-    def mapEntity( self, record : list ) -> Restaurant:
+    def __mapEntity( self, record : list ) -> Restaurant:
         # Variables
         restaurant : Restaurant
         # Code
@@ -69,7 +69,7 @@ class MysqlRestaurantRepository( RestaurantRepository ):
             )
             cursor.execute( query, values )
             record = cursor.fetchone()
-            return self.mapEntity( record )
+            return self.__mapEntity( record )
         except Exception:
             return None
         finally:

@@ -9,7 +9,7 @@ from ..valueObjects.DiningTableNumber import DiningTableNumber
 
 """
  *
- * Classes 
+ * Class 
  *
 """
 
