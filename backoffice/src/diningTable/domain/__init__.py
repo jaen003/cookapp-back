@@ -13,3 +13,5 @@ from .events.DiningTableCreated                           import *
 from .DiningTableRepository                               import *
 from .exceptions.DiningTableNumberAlreadyCreatedException import *
 from .events.DiningTableDeleted                           import *
+from .exceptions.DiningTableNotFoundException             import *
+from .events.DiningTableNumberChanged                     import *
