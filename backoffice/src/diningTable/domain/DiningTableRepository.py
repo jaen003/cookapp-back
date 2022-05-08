@@ -5,6 +5,7 @@
 """
 
 from abc                             import abstractmethod
+from abc                             import ABCMeta
 from .DiningTable                    import DiningTable
 from .valueObjects.DiningTableNumber import DiningTableNumber
 from .valueObjects.DiningTableId     import DiningTableId
@@ -16,7 +17,7 @@ from src.restaurant.domain           import RestaurantId
  *
 """
 
-class DiningTableRepository:
+class DiningTableRepository( metaclass = ABCMeta ):
 
     """
      *

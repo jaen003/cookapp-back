@@ -9,7 +9,7 @@ from ..exceptions.InvalidEmployeeNameException import InvalidEmployeeNameExcepti
 
 """
  *
- * Classes 
+ * Class 
  *
 """
 

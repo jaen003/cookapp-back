@@ -100,7 +100,7 @@ class MysqlEmployeeRepository( EmployeeRepository ):
                 cursor.close()
                 connection.close()
     
-    def mapEntity( self, record : list ) -> Employee:
+    def __mapEntity( self, record : list ) -> Employee:
         # Variables
         employee : Employee
         # Code
@@ -135,7 +135,7 @@ class MysqlEmployeeRepository( EmployeeRepository ):
             )
             cursor.execute( query, values )
             record = cursor.fetchone()
-            return self.mapEntity( record )
+            return self.__mapEntity( record )
         except Exception:
             return None
         finally:
@@ -162,7 +162,7 @@ class MysqlEmployeeRepository( EmployeeRepository ):
             )
             cursor.execute( query, values )
             record = cursor.fetchone()
-            return self.mapEntity( record )
+            return self.__mapEntity( record )
         except Exception:
             return None
         finally:
@@ -188,7 +188,7 @@ class MysqlEmployeeRepository( EmployeeRepository ):
             )
             cursor.execute( query, values )
             record = cursor.fetchone()
-            return self.mapEntity( record )
+            return self.__mapEntity( record )
         except Exception:
             return None
         finally:

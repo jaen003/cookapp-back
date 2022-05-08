@@ -12,7 +12,7 @@ from src.shared.domain import DomainException
  *
 """
 
-class InvalidDiningTableIdException( DomainException ):
+class InvalidProductIdException( DomainException ):
 
     """
      *
@@ -20,7 +20,7 @@ class InvalidDiningTableIdException( DomainException ):
      *
     """
 
-    __INVALID_DINING_TABLE_ID = 145
+    __INVALID_PRODUCT_ID = 109
 
     """
      *
@@ -29,7 +29,7 @@ class InvalidDiningTableIdException( DomainException ):
     """
 
     def __init__( self, id : str ) -> None:
-        super().__init__(
-            self.__INVALID_DINING_TABLE_ID,
-            'The dining table id {} is invalid'.format( id )
+        super().__init__( 
+            self.__INVALID_PRODUCT_ID,
+            'The product id {} is invalid'.format( id )
         )
