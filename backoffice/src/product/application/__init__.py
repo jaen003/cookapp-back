@@ -4,6 +4,7 @@
  *
 """
 
-from .ProductCreator import *
-from .ProductRenamer import *
-from .ProductDeletor import *
+from .ProductCreator      import *
+from .ProductRenamer      import *
+from .ProductDeletor      import *
+from .ProductPriceChanger import *

@@ -28,7 +28,7 @@ class ProductCreator:
 
     """
      *
-     * Parameters 
+     * Attributes 
      *
     """
  

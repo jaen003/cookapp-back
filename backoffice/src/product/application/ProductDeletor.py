@@ -22,7 +22,7 @@ class ProductDeletor:
 
     """
      *
-     * Parameters 
+     * Attributes 
      *
     """
  

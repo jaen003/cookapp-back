@@ -22,7 +22,7 @@ class DiningTableDeletor:
 
     """
      *
-     * Parameters 
+     * Attributes 
      *
     """
  

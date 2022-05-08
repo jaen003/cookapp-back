@@ -22,7 +22,7 @@ class EmployeeDeletor:
 
     """
      *
-     * Parameters 
+     * Attributes 
      *
     """
  

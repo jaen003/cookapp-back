@@ -14,6 +14,7 @@ from src.restaurant.domain            import RestaurantId
 from .valueObjects.ProductStatus      import ProductStatus
 from .events.ProductRenamed           import ProductRenamed
 from .events.ProductDeleted           import ProductDeleted
+from .events.ProductPriceChanged      import ProductPriceChanged
 
 """
  *
@@ -25,7 +26,7 @@ class Product( AggregateRoot ):
 
     """
      *
-     * Parameters 
+     * Attributes 
      *
     """
 
@@ -114,4 +115,11 @@ class Product( AggregateRoot ):
         self.__status = ProductStatus.createDeleted()
         self.recordEvent( ProductDeleted(
             id = self.__id
+        ) )
+    
+    def changePrice( self, newPrice : ProductPrice ) -> None:
+        self.__price = newPrice
+        self.recordEvent( ProductPriceChanged(
+            id    = self.__id,
+            price = self.__price
         ) )

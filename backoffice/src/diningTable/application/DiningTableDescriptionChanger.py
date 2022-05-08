@@ -23,7 +23,7 @@ class DiningTableDescriptionChanger:
 
     """
      *
-     * Parameters 
+     * Attributes 
      *
     """
  

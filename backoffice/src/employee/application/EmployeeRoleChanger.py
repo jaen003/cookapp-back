@@ -22,7 +22,7 @@ class EmployeeRoleChanger:
 
     """
      *
-     * Parameters 
+     * Attributes 
      *
     """
  
