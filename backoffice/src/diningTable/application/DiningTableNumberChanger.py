@@ -24,7 +24,7 @@ class DiningTableNumberChanger:
 
     """
      *
-     * Parameters 
+     * Attributes 
      *
     """
  

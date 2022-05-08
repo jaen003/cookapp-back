@@ -22,7 +22,7 @@ class EmployeeBlocker:
 
     """
      *
-     * Parameters 
+     * Attributes 
      *
     """
  

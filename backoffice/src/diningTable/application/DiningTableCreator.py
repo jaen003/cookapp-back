@@ -27,7 +27,7 @@ class DiningTableCreator:
 
     """
      *
-     * Parameters 
+     * Attributes 
      *
     """
  
