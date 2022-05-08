@@ -16,6 +16,7 @@ from src.diningTable.domain         import DiningTableNumber
 from src.diningTable.domain         import DiningTableDescription
 from src.restaurant.domain          import RestaurantId
 from flask                          import request
+from src.diningTable.application    import DiningTableNumberChanger
 
 """
  *
@@ -60,6 +61,27 @@ class EmployeePutController( FlaskView ):
                 id           = DiningTableId( data.get( 'tab_id' ) ),
                 number       = DiningTableNumber( data.get( 'tab_number' ) ),
                 description  = DiningTableDescription( data.get( 'tab_description' ) ),
+                restaurantId = RestaurantId( data.get( 'rest_id' ) )
+            )
+            return {}, 200
+        except DomainException as exc:
+            return { 'code' : exc.getCode() }, 400
+    
+    @route( 'change/number', methods = ['PUT'] )
+    def changeNumber( self ) -> None:
+        # Variables
+        changer : DiningTableNumberChanger
+        data    : dict[str, str | int]
+        # Code
+        data    = request.json
+        changer = DiningTableNumberChanger(
+            repository     = MysqlDiningTableRepository(),
+            eventPublisher = self.__eventPublisher
+        )
+        try:
+            changer.change(
+                id           = DiningTableId( data.get( 'tab_id' ) ),
+                number       = DiningTableNumber( data.get( 'tab_number' ) ),
                 restaurantId = RestaurantId( data.get( 'rest_id' ) )
             )
             return {}, 200

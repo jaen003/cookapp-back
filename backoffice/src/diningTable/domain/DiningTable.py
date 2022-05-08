@@ -12,6 +12,7 @@ from .valueObjects.DiningTableStatus      import DiningTableStatus
 from src.shared.domain                    import AggregateRoot
 from .events.DiningTableCreated           import DiningTableCreated
 from .events.DiningTableDeleted           import DiningTableDeleted
+from .events.DiningTableNumberChanged     import DiningTableNumberChanged
 
 """
  *
@@ -96,4 +97,11 @@ class DiningTable( AggregateRoot ):
         self.__status = DiningTableStatus.createDeleted()
         self.recordEvent( DiningTableDeleted(
             id = self.__id
+        ) )
+    
+    def renumber( self, newNumber : DiningTableNumber ) -> None:
+        self.__number = newNumber
+        self.recordEvent( DiningTableNumberChanged(
+            id     = self.__id,
+            number = self.__number
         ) )
