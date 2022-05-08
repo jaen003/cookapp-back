@@ -6,3 +6,4 @@
 
 from .ProductCreator import *
 from .ProductRenamer import *
+from .ProductDeletor import *

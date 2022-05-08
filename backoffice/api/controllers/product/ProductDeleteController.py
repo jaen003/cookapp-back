@@ -4,15 +4,15 @@
  *
 """
 
-from flask_classful              import FlaskView
-from flask_classful              import route
-from src.employee.application    import EmployeeDeletor
-from src.employee.infrastructure import MysqlEmployeeRepository
-from src.shared.domain           import DomainEventsPublisher
-from src.shared.domain           import DomainException
-from src.employee.domain         import EmployeeId
-from src.restaurant.domain       import RestaurantId
-from flask                       import request
+from flask_classful             import FlaskView
+from flask_classful             import route
+from src.product.application    import ProductDeletor
+from src.product.infrastructure import MysqlProductRepository
+from src.shared.domain          import DomainEventsPublisher
+from src.shared.domain          import DomainException
+from src.product.domain         import ProductId
+from src.restaurant.domain      import RestaurantId
+from flask                      import request
 
 """
  *
@@ -20,7 +20,7 @@ from flask                       import request
  *
 """
 
-class EmployeeDeleteController( FlaskView ):
+class ProductDeleteController( FlaskView ):
 
     """
      *
@@ -28,7 +28,7 @@ class EmployeeDeleteController( FlaskView ):
      *
     """
     
-    route_base       = '/api/v1/employee'
+    route_base       = '/api/v1/product'
     __eventPublisher : DomainEventsPublisher
 
     """
@@ -43,17 +43,17 @@ class EmployeeDeleteController( FlaskView ):
     @route( '', methods = ['DELETE'] )
     def delete( self ) -> None:
         # Variables
-        deletor : EmployeeDeletor
+        deletor : ProductDeletor
         data    : dict[str, str | int]
         # Code
         data    = request.json
-        deletor = EmployeeDeletor(
-            repository     = MysqlEmployeeRepository(),
+        deletor = ProductDeletor(
+            repository     = MysqlProductRepository(),
             eventPublisher = self.__eventPublisher
         )
         try:
             deletor.delete(
-                id           = EmployeeId( data.get( 'emp_id' ) ),
+                id           = ProductId( data.get( 'prod_id' ) ),
                 restaurantId = RestaurantId( data.get( 'rest_id' ) )
             )
             return {}, 200

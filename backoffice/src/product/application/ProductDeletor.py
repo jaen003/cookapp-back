@@ -4,13 +4,11 @@
  *
 """
 
-from src.product.domain    import ProductName
 from src.product.domain    import ProductId
 from src.product.domain    import ProductRepository
 from src.product.domain    import Product
 from src.restaurant.domain import RestaurantId
 from src.shared.domain     import ServerInternalErrorException
-from src.product.domain    import ProductNameAlreadyCreatedException
 from src.shared.domain     import DomainEventsPublisher
 from src.product.domain    import ProductNotFoundException
 
@@ -20,7 +18,7 @@ from src.product.domain    import ProductNotFoundException
  *
 """
 
-class ProductRenamer:
+class ProductDeletor:
 
     """
      *
@@ -45,22 +43,18 @@ class ProductRenamer:
         self.__repository     = repository
         self.__eventPublisher = eventPublisher
 
-    def rename( 
+    def delete( 
         self, 
-        id           : ProductId, 
-        name         : ProductName,
+        id           : ProductId,
         restaurantId : RestaurantId
     ) -> None:
         # Variables
         product : Product
         # Code
-        product = self.__repository.findByNameAndRestaurant( name, restaurantId )
-        if product is not None:
-            raise ProductNameAlreadyCreatedException( name )
         product = self.__repository.findByIdAndRestaurant( id, restaurantId )
         if product is None:
             raise ProductNotFoundException( id )
-        product.rename( name )
+        product.delete()
         if not self.__repository.update( product ):
             raise ServerInternalErrorException()
         self.__eventPublisher.publish( product.pullEvents() )
