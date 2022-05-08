@@ -4,15 +4,16 @@
  *
 """
 
-from .valueObjects.DiningTableNumber      import DiningTableNumber
-from .valueObjects.DiningTableDescription import DiningTableDescription
-from .valueObjects.DiningTableId          import DiningTableId
-from src.restaurant.domain                import RestaurantId
-from .valueObjects.DiningTableStatus      import DiningTableStatus
-from src.shared.domain                    import AggregateRoot
-from .events.DiningTableCreated           import DiningTableCreated
-from .events.DiningTableDeleted           import DiningTableDeleted
-from .events.DiningTableNumberChanged     import DiningTableNumberChanged
+from .valueObjects.DiningTableNumber       import DiningTableNumber
+from .valueObjects.DiningTableDescription  import DiningTableDescription
+from .valueObjects.DiningTableId           import DiningTableId
+from src.restaurant.domain                 import RestaurantId
+from .valueObjects.DiningTableStatus       import DiningTableStatus
+from src.shared.domain                     import AggregateRoot
+from .events.DiningTableCreated            import DiningTableCreated
+from .events.DiningTableDeleted            import DiningTableDeleted
+from .events.DiningTableNumberChanged      import DiningTableNumberChanged
+from .events.DiningTableDescriptionChanged import DiningTableDescriptionChanged
 
 """
  *
@@ -99,9 +100,16 @@ class DiningTable( AggregateRoot ):
             id = self.__id
         ) )
     
-    def renumber( self, newNumber : DiningTableNumber ) -> None:
+    def changeNumber( self, newNumber : DiningTableNumber ) -> None:
         self.__number = newNumber
         self.recordEvent( DiningTableNumberChanged(
             id     = self.__id,
             number = self.__number
+        ) )
+    
+    def changeDescription( self, newDescription : DiningTableDescription ) -> None:
+        self.__description = newDescription
+        self.recordEvent( DiningTableDescriptionChanged(
+            id          = self.__id,
+            description = self.__description
         ) )

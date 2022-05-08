@@ -9,10 +9,9 @@ from src.diningTable.domain import DiningTableRepository
 from src.shared.domain      import DomainEventsPublisher
 from src.diningTable.domain import DiningTable
 from src.diningTable.domain import DiningTableId
-from src.diningTable.domain import DiningTableNumber
+from src.diningTable.domain import DiningTableDescription
 from src.shared.domain      import ServerInternalErrorException
 from src.diningTable.domain import DiningTableNotFoundException
-from src.diningTable.domain import DiningTableNumberAlreadyCreatedException
 
 """
  *
@@ -20,7 +19,7 @@ from src.diningTable.domain import DiningTableNumberAlreadyCreatedException
  *
 """
 
-class DiningTableNumberChanger:
+class DiningTableDescriptionChanger:
 
     """
      *
@@ -48,19 +47,16 @@ class DiningTableNumberChanger:
     def change(
         self, 
         id           : DiningTableId,
-        number       : DiningTableNumber,
+        description  : DiningTableDescription,
         restaurantId : RestaurantId
     ) -> None:
         # Variables
         diningTable : DiningTable
         # Code
-        diningTable = self.__repository.findByNumberAndRestaurant( number, restaurantId )
-        if diningTable is not None:
-            raise DiningTableNumberAlreadyCreatedException( number )
         diningTable = self.__repository.findByIdAndRestaurant( id, restaurantId )
         if diningTable is None:
             raise DiningTableNotFoundException( id )
-        diningTable.changeNumber( number )
+        diningTable.changeDescription( description )
         if not self.__repository.update( diningTable ):
             raise ServerInternalErrorException()
         self.__eventPublisher.publish( diningTable.pullEvents() )
