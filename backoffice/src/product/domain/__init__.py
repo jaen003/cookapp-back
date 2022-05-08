@@ -14,3 +14,4 @@ from .events.ProductCreated                         import *
 from .exceptions.ProductNameAlreadyCreatedException import *
 from .exceptions.ProductNotFoundException           import *
 from .ProductRepository                             import *
+from .events.ProductRenamed                         import *

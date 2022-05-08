@@ -12,6 +12,7 @@ from src.shared.domain                import AggregateRoot
 from .events.ProductCreated           import ProductCreated
 from src.restaurant.domain            import RestaurantId
 from .valueObjects.ProductStatus      import ProductStatus
+from .events.ProductRenamed           import ProductRenamed
 
 """
  *
@@ -100,3 +101,10 @@ class Product( AggregateRoot ):
             restaurantId = restaurantId,
         ) )
         return self
+
+    def rename( self, newName : ProductName ) -> None:
+        self.__name = newName
+        self.recordEvent( ProductRenamed(
+            id   = self.__id,
+            name = self.__name
+        ) )

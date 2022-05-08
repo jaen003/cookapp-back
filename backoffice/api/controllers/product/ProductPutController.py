@@ -7,6 +7,7 @@
 from flask_classful                import FlaskView
 from flask_classful                import route
 from src.product.application       import ProductCreator
+from src.product.application       import ProductRenamer
 from src.product.infrastructure    import MysqlProductRepository
 from src.restaurant.infrastructure import MysqlRestaurantRepository
 from src.shared.domain             import DomainEventsPublisher
@@ -61,6 +62,27 @@ class ProductPutController( FlaskView ):
                 name         = ProductName( data.get( 'prod_name' ) ),
                 price        = ProductPrice( data.get( 'prod_price' ) ),
                 description  = ProductDescription( data.get( 'prod_description' ) ),
+                restaurantId = RestaurantId( data.get( 'rest_id' ) )
+            )
+            return {}, 200
+        except DomainException as exc:
+            return { 'code' : exc.getCode() }, 400
+    
+    @route( 'rename', methods = ['PUT'] )
+    def rename( self ) -> None:
+        # Variables
+        renamer : ProductRenamer
+        data    : dict[str, str | int]
+        # Code
+        data    = request.json
+        renamer = ProductRenamer(
+            repository     = MysqlProductRepository(),
+            eventPublisher = self.__eventPublisher
+        )
+        try:
+            renamer.rename(
+                id           = ProductId( data.get( 'prod_id' ) ),
+                name         = ProductName( data.get( 'prod_name' ) ),
                 restaurantId = RestaurantId( data.get( 'rest_id' ) )
             )
             return {}, 200
