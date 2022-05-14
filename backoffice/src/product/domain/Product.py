@@ -4,17 +4,18 @@
  *
 """
 
-from .valueObjects.ProductName        import ProductName
-from .valueObjects.ProductPrice       import ProductPrice
-from .valueObjects.ProductDescription import ProductDescription
-from .valueObjects.ProductId          import ProductId
-from src.shared.domain                import AggregateRoot
-from .events.ProductCreated           import ProductCreated
-from src.restaurant.domain            import RestaurantId
-from .valueObjects.ProductStatus      import ProductStatus
-from .events.ProductRenamed           import ProductRenamed
-from .events.ProductDeleted           import ProductDeleted
-from .events.ProductPriceChanged      import ProductPriceChanged
+from .valueObjects.ProductName         import ProductName
+from .valueObjects.ProductPrice        import ProductPrice
+from .valueObjects.ProductDescription  import ProductDescription
+from .valueObjects.ProductId           import ProductId
+from src.shared.domain                 import AggregateRoot
+from .events.ProductCreated            import ProductCreated
+from src.restaurant.domain             import RestaurantId
+from .valueObjects.ProductStatus       import ProductStatus
+from .events.ProductRenamed            import ProductRenamed
+from .events.ProductDeleted            import ProductDeleted
+from .events.ProductPriceChanged       import ProductPriceChanged
+from .events.ProductDescriptionChanged import ProductDescriptionChanged
 
 """
  *
@@ -122,4 +123,11 @@ class Product( AggregateRoot ):
         self.recordEvent( ProductPriceChanged(
             id    = self.__id,
             price = self.__price
+        ) )
+    
+    def changeDescription( self, newDescription : ProductDescription ) -> None:
+        self.__description = newDescription
+        self.recordEvent( ProductDescriptionChanged(
+            id          = self.__id,
+            description = self.__description,
         ) )
