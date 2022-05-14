@@ -9,6 +9,7 @@ from flask_classful                import route
 from src.product.application       import ProductCreator
 from src.product.application       import ProductRenamer
 from src.product.application       import ProductPriceChanger
+from src.product.application       import ProductDescriptionChanger
 from src.product.infrastructure    import MysqlProductRepository
 from src.restaurant.infrastructure import MysqlRestaurantRepository
 from src.shared.domain             import DomainEventsPublisher
@@ -105,6 +106,27 @@ class ProductPutController( FlaskView ):
             changer.change(
                 id           = ProductId( data.get( 'prod_id' ) ),
                 price        = ProductPrice( data.get( 'prod_price' ) ),
+                restaurantId = RestaurantId( data.get( 'rest_id' ) )
+            )
+            return {}, 200
+        except DomainException as exc:
+            return { 'code' : exc.getCode() }, 400
+    
+    @route( 'change/description', methods = ['PUT'] )
+    def changeDescription( self ) -> None:
+        # Variables
+        changer : ProductDescriptionChanger
+        data    : dict[str, str | int]
+        # Code
+        data    = request.json
+        changer = ProductDescriptionChanger(
+            repository     = MysqlProductRepository(),
+            eventPublisher = self.__eventPublisher
+        )
+        try:
+            changer.change(
+                id           = ProductId( data.get( 'prod_id' ) ),
+                description  = ProductDescription( data.get( 'prod_description' ) ),
                 restaurantId = RestaurantId( data.get( 'rest_id' ) )
             )
             return {}, 200

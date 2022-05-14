@@ -17,3 +17,4 @@ from .ProductRepository                             import *
 from .events.ProductRenamed                         import *
 from .events.ProductDeleted                         import *
 from .events.ProductPriceChanged                    import *
+from .events.ProductDescriptionChanged              import *
