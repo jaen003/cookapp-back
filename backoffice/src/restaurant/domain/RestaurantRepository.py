@@ -26,3 +26,7 @@ class RestaurantRepository( metaclass = ABCMeta ):
     @abstractmethod
     def findById( self, id : RestaurantId ) -> Restaurant:
         pass
+    
+    @abstractmethod
+    def save( self, restaurant : Restaurant ) -> bool:
+        pass

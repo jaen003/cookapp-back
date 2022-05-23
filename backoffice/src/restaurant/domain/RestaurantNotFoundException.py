@@ -4,8 +4,8 @@
  *
 """
 
-from src.shared.domain           import DomainException
-from ..valueObjects.RestaurantId import RestaurantId
+from src.shared.domain          import DomainException
+from .valueObjects.RestaurantId import RestaurantId
 
 """
  *

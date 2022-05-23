@@ -51,7 +51,7 @@ class Product( AggregateRoot ):
         price        : ProductPrice,
         description  : ProductDescription,
         status       : ProductStatus,
-        restaurantId : RestaurantId,
+        restaurantId : RestaurantId
     ) -> None:
         super().__init__()
         self.__id           = id
@@ -86,8 +86,8 @@ class Product( AggregateRoot ):
         name         : ProductName,
         price        : ProductPrice,
         description  : ProductDescription,
-        restaurantId : RestaurantId,
-    ): # -> Product
+        restaurantId : RestaurantId
+    ) -> object:
         self = cls(
             id           = id,
             name         = name,
