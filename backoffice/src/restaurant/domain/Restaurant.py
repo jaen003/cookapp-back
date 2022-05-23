@@ -42,3 +42,25 @@ class Restaurant( AggregateRoot ):
         self.__id     = id
         self.__name   = name
         self.__status = status
+    
+    def getId( self ) -> RestaurantId:
+        return self.__id
+
+    def getName( self ) -> RestaurantName:
+        return self.__name
+    
+    def getStatus( self ) -> RestaurantStatus:
+        return self.__status
+    
+    @classmethod
+    def create( 
+        cls, 
+        id   : RestaurantId, 
+        name : RestaurantName
+    ) -> object:
+        self = cls(
+            id     = id,
+            name   = name,
+            status = RestaurantStatus.createEnabled()
+        )
+        return self

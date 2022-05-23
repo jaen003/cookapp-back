@@ -37,6 +37,33 @@ class MysqlRestaurantRepository( RestaurantRepository ):
 
     def __init__( self ) -> object:
         self.__databaseConnector = MysqlDatabaseConnector()
+
+    def save( self, restaurant : Restaurant ) -> bool:
+        # Variables
+        query      : str
+        values     : tuple
+        connection : MySQLConnection
+        cursor     : MySQLCursor
+        # Code
+        query = 'INSERT INTO Restaurant ( rest_id, rest_name, rest_status ) ' \
+                'VALUES ( %s, %s, %s )'
+        try:
+            connection = self.__databaseConnector.getConnection()
+            cursor     = connection.cursor()
+            values = (
+                restaurant.getId().getValue(),
+                restaurant.getName().getValue(),
+                restaurant.getStatus().getValue(),
+            )
+            cursor.execute( query, values )
+            connection.commit()
+            return True
+        except Exception:
+            return False
+        finally:
+            if connection is not None:
+                cursor.close()
+                connection.close()
     
     def __mapEntity( self, record : list ) -> Restaurant:
         # Variables

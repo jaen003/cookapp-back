@@ -6,20 +6,22 @@
 
 import os
 import inspect
-from flask                     import Flask
-from flask_cors                import CORS
-from src.shared.infrastructure import RabbitmqEventBusConfigurer
-from src.shared.infrastructure import RabbitmqDomainEventsConsumer
-from src.shared.infrastructure import RabbitmqDomainEventsPublisher
-from src.shared.infrastructure import MysqlDatabaseConfigurer
-from src.shared.domain         import DomainEventsPublisher
-from injector                  import Binder
-from injector                  import Injector
-from src.shared.infrastructure import DomainEventsAggregator
-from src.shared.infrastructure import InjectorDependecyServiceAggregator
-from types                     import ModuleType
-from importlib                 import import_module
-from flask_classful            import FlaskView
+from flask                         import Flask
+from flask_cors                    import CORS
+from src.shared.infrastructure     import RabbitmqEventBusConfigurer
+from src.shared.infrastructure     import RabbitmqDomainEventsConsumer
+from src.shared.infrastructure     import RabbitmqDomainEventsPublisher
+from src.shared.infrastructure     import MysqlDatabaseConfigurer
+from src.shared.domain             import DomainEventsPublisher
+from injector                      import Binder
+from injector                      import Injector
+from src.shared.infrastructure     import DomainEventsAggregator
+from src.shared.infrastructure     import InjectorDependecyServiceAggregator
+from types                         import ModuleType
+from importlib                     import import_module
+from flask_classful                import FlaskView
+from src.restaurant.domain         import RestaurantRepository
+from src.restaurant.infrastructure import MysqlRestaurantRepository
 
 """
  *
@@ -72,6 +74,11 @@ def addServices( binder : Binder ) -> None:
         binder, 
         DomainEventsPublisher, 
         RabbitmqDomainEventsPublisher
+    )
+    InjectorDependecyServiceAggregator.addScope( 
+        binder, 
+        RestaurantRepository, 
+        MysqlRestaurantRepository
     )
 
 def main() -> None:
