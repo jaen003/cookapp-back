@@ -17,7 +17,7 @@ class DiningTableNumber( IntValueObject ):
 
     """
      *
-     * Consts 
+     * Constants 
      *
     """
 

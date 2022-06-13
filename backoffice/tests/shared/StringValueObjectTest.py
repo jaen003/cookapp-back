@@ -39,24 +39,6 @@ class StringValueObjectTest( TestCase ):
         response    = valueObject.equals( StringValueObject( 'hello world!' ) )
         self.assertTrue( response )
     
-    def testIsNotAnEqualObjectBecauseItIsNotAnComparableObject( self ) -> None:
-        # Variables
-        valueObject : StringValueObject
-        response    : bool
-        # Code
-        valueObject = StringValueObject( 'hello world!' )
-        response    = valueObject.equals( 'hello world!' )
-        self.assertFalse( response )
-    
-    def testIsNotAnEqualObjectBecauseItIsNotAnComparableObject2( self ) -> None:
-        # Variables
-        valueObject : StringValueObject
-        response    : bool
-        # Code
-        valueObject = StringValueObject( 'hello world!' )
-        response    = valueObject.equals( None )
-        self.assertFalse( response )
-    
     def testIsAnEmptyObject( self ) -> None:
         # Variables
         valueObject : StringValueObject

@@ -38,24 +38,6 @@ class IntValueObjectTest( TestCase ):
         valueObject = IntValueObject( 3 )
         response    = valueObject.equals( IntValueObject( 3 ) )
         self.assertTrue( response )
-    
-    def testIsNotAnEqualObjectBecauseItIsNotAnComparableObject( self ) -> None:
-        # Variables
-        valueObject : IntValueObject
-        response    : bool
-        # Code
-        valueObject = IntValueObject( 3 )
-        response    = valueObject.equals( 3 )
-        self.assertFalse( response )
-    
-    def testIsNotAnEqualObjectBecauseItIsNotAnComparableObject2( self ) -> None:
-        # Variables
-        valueObject : IntValueObject
-        response    : bool
-        # Code
-        valueObject = IntValueObject( 3 )
-        response    = valueObject.equals( None )
-        self.assertFalse( response )
 
     def testIsAnObjectLessThan( self ) -> None:
         # Variables

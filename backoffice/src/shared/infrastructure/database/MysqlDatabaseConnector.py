@@ -12,7 +12,7 @@ from time                       import sleep
 
 """
  *
- * Class 
+ * Classes 
  *
 """
 
@@ -74,8 +74,8 @@ class MysqlDatabaseConnector( metaclass = Singleton ):
     def __init__( self ) -> object:
         self.__connectionPool     = None
         self.__rootConnection     = None
-        self.__password           = os.getenv( 'DATABASE_PASSWORD' )
-        self.__user               = os.getenv( 'DATABASE_USER' )
+        self.__password           = os.getenv( 'MYSQL_ROOT_PASSWORD' )
+        self.__user               = os.getenv( 'MYSQL_USER' )
         self.__database           = os.getenv( 'DATABASE_NAME' )
         self.__host               = os.getenv( 'DATABASE_HOST' )
         self.__port               = os.getenv( 'DATABASE_PORT' )

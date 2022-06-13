@@ -78,7 +78,7 @@ class RabbitmqDomainEventsConsumer:
             if eventInformation.isConsumedEvent():          
                 Thread( target = self.__consumeEvent, args = ( eventInformation, ) ).start()
 
-    def __consumeEvent( self, eventInformation ) -> None:
+    def __consumeEvent( self, eventInformation : DomainEventInformation ) -> None:
         # Variables
         channel   : Channel
         queueName : str

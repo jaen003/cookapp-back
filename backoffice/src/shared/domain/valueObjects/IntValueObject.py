@@ -26,53 +26,20 @@ class IntValueObject:
     def getValue( self ) -> int:
         return self.__value
     
-    def __isAnComparableObject( self, other : object ) -> bool:
-        return ( other is not None and issubclass( type( self ), type( other ) ) )
-    
     def equals( self, other : object ) -> bool:
-        # Variables
-        equalObjects : bool
-        # Code
-        equalObjects = False
-        if self.__isAnComparableObject( other ):
-            equalObjects = self.__value == other.getValue()            
-        return equalObjects
+        return self.__value == other.getValue()
     
     def isLessThan( self, other : object ) -> bool:
-        # Variables
-        response : bool
-        # Code
-        response = False
-        if self.__isAnComparableObject( other ):
-            response = self.__value < other.getValue()
-        return response
+        return self.__value < other.getValue()
     
     def isGreaterThan( self, other : object ) -> bool:
-        # Variables
-        response : bool
-        # Code
-        response = False
-        if self.__isAnComparableObject( other ):
-            response = self.__value > other.getValue()
-        return response
+        return self.__value > other.getValue()
     
     def isLessThanOrEqual( self, other : object ) -> bool:
-        # Variables
-        response : bool
-        # Code
-        response = False
-        if self.__isAnComparableObject( other ):
-            response = self.__value <= other.getValue()
-        return response
+        return self.__value <= other.getValue()
     
     def isGreaterThanOrEqual( self, other : object ) -> bool:
-        # Variables
-        response : bool
-        # Code
-        response = False
-        if self.__isAnComparableObject( other ):
-            response = self.__value >= other.getValue()
-        return response
+        return self.__value >= other.getValue()
     
     def toString( self ) -> str:
         return str( self.__value )

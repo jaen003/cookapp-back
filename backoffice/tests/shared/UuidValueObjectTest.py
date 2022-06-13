@@ -39,24 +39,6 @@ class UuidValueObjectTest( TestCase ):
         response    = valueObject.equals( UuidValueObject( '56de485d-304e-41a3-b822-d129e464a1ea' ) )
         self.assertTrue( response )
     
-    def testIsNotAnEqualObjectBecauseItIsNotAnComparableObject( self ) -> None:
-        # Variables
-        valueObject : UuidValueObject
-        response    : bool
-        # Code
-        valueObject = UuidValueObject( '56de485d-304e-41a3-b822-d129e464a1ea' )
-        response    = valueObject.equals( '56de485d-304e-41a3-b822-d129e464a1ea' )
-        self.assertFalse( response )
-    
-    def testIsNotAnEqualObjectBecauseItIsNotAnComparableObject2( self ) -> None:
-        # Variables
-        valueObject : UuidValueObject
-        response    : bool
-        # Code
-        valueObject = UuidValueObject( '56de485d-304e-41a3-b822-d129e464a1ea' )
-        response    = valueObject.equals( None )
-        self.assertFalse( response )
-    
     def testIsAnEmptyObject( self ) -> None:
         # Variables
         valueObject : UuidValueObject

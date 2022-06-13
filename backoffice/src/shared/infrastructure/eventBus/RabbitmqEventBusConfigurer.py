@@ -63,7 +63,7 @@ class RabbitmqEventBusConfigurer:
                 queueName = self.__queueNameFormatter.format( eventInformation )
                 self.__declareQueue( queueName )
                 self.__bindQueue( queueName, eventName )
-                deadLetterQueueName = self.__queueNameFormatter.formatDeadLetter( eventInformation )
+                deadLetterQueueName    = self.__queueNameFormatter.formatDeadLetter( eventInformation )
                 deadLetterExchangeName = self.__exchangeNameFormatter.formatDeadLetter( eventName )
                 self.__declareQueue( deadLetterQueueName )
                 self.__declareExchange( deadLetterExchangeName )

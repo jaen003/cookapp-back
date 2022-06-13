@@ -23,7 +23,6 @@ namespace preparation.src.shared.infrastructure {
         */
 
         private                 string migrationsPath;
-        private                 string databaseName;
         private MssqlDatabaseConnector databaseConnector;
 
         /* 
@@ -35,7 +34,6 @@ namespace preparation.src.shared.infrastructure {
         public MssqlDatabaseConfigurer() {
             databaseConnector = MssqlDatabaseConnector.getInstance();
             migrationsPath    = Environment.GetEnvironmentVariable( "DATABASE_MIGRATIONS_PATH" );
-            databaseName      = Environment.GetEnvironmentVariable( "DATABASE_NAME" );
         }
 
         private void applyMigrations() {

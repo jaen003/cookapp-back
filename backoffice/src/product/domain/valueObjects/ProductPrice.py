@@ -18,7 +18,7 @@ class ProductPrice( IntValueObject ):
 
     """
      *
-     * Consts 
+     * Constants 
      *
     """
 

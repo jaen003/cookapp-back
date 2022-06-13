@@ -13,15 +13,15 @@ services:
         env_file:
             - ./.env
 
-    mysql:
+    backoffice_mysql:
         image: 'mariadb:10.6'
-        container_name: 'cookapp_mysql'
-        hostname: 'cookapp_mysql'
+        container_name: 'cookapp_backoffice_mysql'
+        hostname: 'cookapp_backoffice_mysql'
         restart: unless-stopped
         ports:                                                           
             - 3360:3306
         env_file:
-            - ./.env
+            - ./backoffice/.env
     
     backoffice_backend:
         image: 'cookapp_backoffice_backend:latest'
@@ -37,7 +37,7 @@ services:
             - ./backoffice/.env
         depends_on:
             - rabbitmq
-            - mysql
+            - backoffice_mysql
         command: gunicorn --reload --bind 0.0.0.0:5000 Main:app
     
     backoffice_backend_test:
