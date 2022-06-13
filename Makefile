@@ -1,7 +1,7 @@
 .PHONY: run
 run :
 	@echo "Running cookapp architecture"
-	@docker-compose up --remove-orphans backoffice_backend
+	@docker-compose up -d --remove-orphans preparation_backend backoffice_backend
 
 .PHONY: stop
 stop :

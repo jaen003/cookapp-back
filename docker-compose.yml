@@ -22,26 +22,6 @@ services:
             - 3360:3306
         env_file:
             - ./.env
-
-    mssql:
-        image: 'mcr.microsoft.com/mssql/server:2019-CU15-ubuntu-20.04'
-        container_name: 'cookapp_mssql'
-        hostname: 'cookapp_mssql'
-        restart: unless-stopped
-        ports:                                                           
-            - 1431:1433
-        env_file:
-            - ./.env
-
-    mongodb:
-        image: 'mongo:5.0.6-focal'
-        container_name: 'cookapp_mongodb'
-        hostname: 'cookapp_mongodb'
-        restart: unless-stopped
-        ports:                                                           
-            - 27018:27017
-        env_file:
-            - ./.env
     
     backoffice_backend:
         image: 'cookapp_backoffice_backend:latest'
@@ -69,6 +49,34 @@ services:
         volumes:
             - ./backoffice:/src/app
         command: python -m unittest discover -s /src/app/tests -p "*Test.py"
+    
+    preparation_mssql:
+        image: 'mcr.microsoft.com/mssql/server:2019-CU15-ubuntu-20.04'
+        container_name: 'cookapp_preparation_mssql'
+        hostname: 'cookapp_preparation_mssql'
+        restart: unless-stopped
+        ports:                                                           
+            - 1431:1433
+        env_file:
+            - ./preparation/.env
+    
+    preparation_backend:
+        image: 'cookapp_preparation_backend:latest'
+        container_name: 'cookapp_preparation_backend'
+        hostname: 'cookapp_preparation_backend'
+        build: ./preparation
+        restart: unless-stopped
+        ports:
+            - "5002:5000"
+        volumes:
+            - ./preparation:/src/app
+            - /src/app/obj
+        env_file:
+            - ./preparation/.env
+        depends_on:
+            - rabbitmq
+            - preparation_mssql
+        command: /bin/bash ./entrypoint.sh
     
     
     

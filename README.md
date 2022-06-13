@@ -21,7 +21,6 @@
 - Docker `v20.10.8`
 - Docker compose `v1.29.2`
 - Microsoft SQL server `v2019-CU15`
-- MongoDB `v5.0.6`
 
 ## 🚀 Environment Setup
 
