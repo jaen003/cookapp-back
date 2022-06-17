@@ -11,4 +11,4 @@ stop :
 .PHONY: test
 test :
 	@echo "Starting cookapp suite tests"
-	@docker-compose up --remove-orphans backoffice_backend_test
+	@docker-compose up --remove-orphans backoffice_backend_test preparation_backend_test

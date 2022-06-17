@@ -78,5 +78,16 @@ services:
             - preparation_mssql
         command: /bin/bash ./entrypoint.sh
     
+    preparation_backend_test:
+        image: 'cookapp_preparation_backend_test:latest'
+        container_name: 'cookapp_preparation_backend_test'
+        hostname: 'cookapp_preparation_backend_test'
+        build: ./preparation
+        restart: 'no'
+        volumes:
+            - ./preparation:/src/app
+            - /src/app/obj
+        command: dotnet test
+    
     
     
