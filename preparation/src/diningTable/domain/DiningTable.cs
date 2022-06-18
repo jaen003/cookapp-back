@@ -74,6 +74,10 @@ namespace preparation.src.diningTable.domain {
             );
         }
 
+        public void delete() {
+            status = DiningTableStatus.createDeleted();
+        }
+
     }
 
 }
