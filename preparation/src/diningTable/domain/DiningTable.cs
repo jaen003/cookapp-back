@@ -78,6 +78,10 @@ namespace preparation.src.diningTable.domain {
             status = DiningTableStatus.createDeleted();
         }
 
+        public void changeNumber( DiningTableNumber newNumber ) {
+            number = newNumber;
+        }
+
     }
 
 }
