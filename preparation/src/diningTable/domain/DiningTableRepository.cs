@@ -16,6 +16,8 @@ namespace preparation.src.diningTable.domain {
 
         bool save( DiningTable diningTable );
 
+        bool update( DiningTable diningTable );
+
         DiningTable? findById( DiningTableId id );
 
     }
