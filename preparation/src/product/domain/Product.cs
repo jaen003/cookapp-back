@@ -58,6 +58,10 @@ namespace preparation.src.product.domain {
             name = newName;
         }
 
+        public void delete() {
+            status = ProductStatus.createDeleted();
+        }
+
     }
 
 }
