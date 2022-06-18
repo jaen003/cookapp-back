@@ -1,5 +1,7 @@
 using preparation.src.diningTable.domain;
 using preparation.src.diningTable.infrastructure;
+using preparation.src.product.domain;
+using preparation.src.product.infrastructure;
 using preparation.src.shared.infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +21,7 @@ builder.Services.AddTransient<RabbitmqEventBusConfigurer, RabbitmqEventBusConfig
 builder.Services.AddTransient<RabbitmqDomainEventsConsumer, RabbitmqDomainEventsConsumer>();
 builder.Services.AddTransient<MssqlDatabaseConfigurer, MssqlDatabaseConfigurer>();
 builder.Services.AddTransient<DiningTableRepository, MssqlDiningTableRepository>();
+builder.Services.AddTransient<ProductRepository, MssqlProductRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
