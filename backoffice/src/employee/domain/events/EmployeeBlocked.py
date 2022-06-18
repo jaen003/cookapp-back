@@ -58,12 +58,4 @@ class EmployeeBlocked( DomainEvent ):
         timestamp : int, 
         data      : dict[str, str | int]
     ) -> object:
-        # Variables
-        domainEvent : object
-        # Code
-        domainEvent = EmployeeBlocked(
-            id        = EmployeeId( data['id'] ),
-            eventId   = eventId,
-            timestamp = timestamp
-        )
-        return domainEvent
+        return EmployeeBlocked( EmployeeId( data['id'] ), eventId, timestamp )

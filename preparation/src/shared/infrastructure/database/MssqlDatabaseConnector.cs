@@ -28,7 +28,6 @@ namespace preparation.src.shared.infrastructure {
         private                         string host;
         private                         string port;
         private                         string database;
-        private                 SqlConnection? connection;
         private                        string? connectionString;
 
         /* 

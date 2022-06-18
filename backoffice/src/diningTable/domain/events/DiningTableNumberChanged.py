@@ -70,10 +70,10 @@ class DiningTableNumberChanged( DomainEvent ):
         domainEvent : object
         # Code
         domainEvent = DiningTableNumberChanged(
-            id        = DiningTableId( data['id'] ),
-            number    = DiningTableNumber( data['number'] ),
-            eventId   = eventId,
-            timestamp = timestamp
+            DiningTableId( data['id'] ),
+            DiningTableNumber( data['number'] ),
+            eventId,
+            timestamp
         )
         return domainEvent
 

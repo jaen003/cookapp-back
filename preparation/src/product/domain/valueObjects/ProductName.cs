@@ -23,9 +23,6 @@ namespace preparation.src.product.domain {
         */
 
         public ProductName( string value ) : base( value ) {
-            if( isEmpty() ) {
-                throw new InvalidProductNameException( value );
-            }
         }
 
     }

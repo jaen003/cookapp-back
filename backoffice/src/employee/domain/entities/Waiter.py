@@ -27,24 +27,6 @@ class Waiter( Employee ):
      *
     """
 
-    def __init__( 
-        self,
-        id           : EmployeeId,
-        email        : EmployeeEmail,
-        name         : EmployeeName,
-        role         : EmployeeRole,
-        status       : EmployeeStatus,
-        restaurantId : RestaurantId
-    ) -> None:
-        super().__init__(
-            id           = id,
-            email        = email,
-            name         = name,
-            role         = role,
-            status       = status,
-            restaurantId = restaurantId,
-        )
-
     @classmethod
     def create(
         cls,
@@ -54,18 +36,12 @@ class Waiter( Employee ):
         restaurantId : RestaurantId,
     ) -> object:
         self = cls(
-            id           = id,
-            email        = email,
-            name         = name,
-            role         = EmployeeRole.createWaiter(),
-            status       = EmployeeStatus.createEnabled(),
-            restaurantId = restaurantId,
+            id,
+            email,
+            name,
+            EmployeeRole.createWaiter(),
+            EmployeeStatus.createEnabled(),
+            restaurantId
         )
-        self.recordEvent( EmployeeCreated(
-            id           = id,
-            email        = email,
-            name         = name,
-            role         = self.getRole(),
-            restaurantId = restaurantId
-        ) )
+        self.recordEvent( EmployeeCreated( id, email, name, self.getRole(), restaurantId ) )
         return self

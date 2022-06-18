@@ -108,12 +108,12 @@ class MysqlProductRepository( ProductRepository ):
         if record is None:
             return None
         product = Product(
-            id           = ProductId( record[0] ),
-            name         = ProductName( record[1] ),
-            price        = ProductPrice( record[2] ),
-            description  = ProductDescription( record[3] ),
-            status       = ProductStatus( record[4] ),
-            restaurantId = RestaurantId( record[5] ),
+            ProductId( record[0] ),
+            ProductName( record[1] ),
+            ProductPrice( record[2] ),
+            ProductDescription( record[3] ),
+            ProductStatus( record[4] ),
+            RestaurantId( record[5] ),
         )
         return product
 
@@ -126,7 +126,7 @@ class MysqlProductRepository( ProductRepository ):
         record     : list
         # Code
         query = 'SELECT prod_id, prod_name, prod_price, prod_description, prod_status, rest_id ' \
-                'FROM Product WHERE prod_status != 2 and prod_id = %s and rest_id = %s'
+                'FROM Product WHERE prod_status != 2 AND prod_id = %s AND rest_id = %s'
         try:
             connection = self.__databaseConnector.getConnection()
             cursor     = connection.cursor()
@@ -153,7 +153,7 @@ class MysqlProductRepository( ProductRepository ):
         record     : list
         # Code
         query = 'SELECT prod_id, prod_name, prod_price, prod_description, prod_status, rest_id ' \
-                'FROM Product WHERE prod_status != 2 and prod_name = %s and rest_id = %s'
+                'FROM Product WHERE prod_status != 2 AND prod_name = %s AND rest_id = %s'
         try:
             connection = self.__databaseConnector.getConnection()
             cursor     = connection.cursor()

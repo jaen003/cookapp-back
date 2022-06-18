@@ -70,9 +70,9 @@ class EmployeeRoleChanged( DomainEvent ):
         domainEvent : object
         # Code
         domainEvent = EmployeeRoleChanged(
-            id        = EmployeeId( data['id'] ),
-            role      = EmployeeRole( data['role'] ),
-            eventId   = eventId,
-            timestamp = timestamp
+            EmployeeId( data['id'] ),
+            EmployeeRole( data['role'] ),
+            eventId,
+            timestamp
         )
         return domainEvent

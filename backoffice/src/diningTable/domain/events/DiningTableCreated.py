@@ -86,12 +86,12 @@ class DiningTableCreated( DomainEvent ):
         domainEvent : object
         # Code
         domainEvent = DiningTableCreated(
-            id           = DiningTableId( data['id'] ),
-            number       = DiningTableNumber( data['number'] ),
-            description  = DiningTableDescription( data['description'] ),
-            restaurantId = RestaurantId( data['restaurantId'] ),
-            eventId      = eventId,
-            timestamp    = timestamp
+            DiningTableId( data['id'] ),
+            DiningTableNumber( data['number'] ),
+            DiningTableDescription( data['description'] ),
+            RestaurantId( data['restaurantId'] ),
+            eventId,
+            timestamp
         )
         return domainEvent
 

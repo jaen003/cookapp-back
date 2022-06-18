@@ -79,37 +79,18 @@ class DiningTable( AggregateRoot ):
         description  : DiningTableDescription,
         restaurantId : RestaurantId
     ) -> object:
-        self = cls(
-            id           = id,
-            number       = number,
-            description  = description,
-            status       = DiningTableStatus.createEnabled(),
-            restaurantId = restaurantId
-        )
-        self.recordEvent( DiningTableCreated(
-            id           = id,
-            number       = number,
-            description  = description,
-            restaurantId = restaurantId
-        ) )
+        self = cls( id, number, description, DiningTableStatus.createEnabled(), restaurantId )
+        self.recordEvent( DiningTableCreated( id, number, description, restaurantId ) )
         return self
     
     def delete( self ) -> None:
         self.__status = DiningTableStatus.createDeleted()
-        self.recordEvent( DiningTableDeleted(
-            id = self.__id
-        ) )
+        self.recordEvent( DiningTableDeleted( self.__id ) )
     
     def changeNumber( self, newNumber : DiningTableNumber ) -> None:
         self.__number = newNumber
-        self.recordEvent( DiningTableNumberChanged(
-            id     = self.__id,
-            number = self.__number
-        ) )
+        self.recordEvent( DiningTableNumberChanged( self.__id, self.__number ) )
     
     def changeDescription( self, newDescription : DiningTableDescription ) -> None:
         self.__description = newDescription
-        self.recordEvent( DiningTableDescriptionChanged(
-            id          = self.__id,
-            description = self.__description
-        ) )
+        self.recordEvent( DiningTableDescriptionChanged( self.__id, self.__description ) )

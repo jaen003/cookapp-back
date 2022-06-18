@@ -58,12 +58,4 @@ class DiningTableDeleted( DomainEvent ):
         timestamp : int, 
         data      : dict[str, str | int]
     ) -> object:
-        # Variables
-        domainEvent : object
-        # Code
-        domainEvent = DiningTableDeleted(
-            id        = DiningTableId( data['id'] ),
-            eventId   = eventId,
-            timestamp = timestamp
-        )
-        return domainEvent
+        return DiningTableDeleted( DiningTableId( data['id'] ), eventId, timestamp )

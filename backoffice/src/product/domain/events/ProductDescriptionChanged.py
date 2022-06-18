@@ -70,10 +70,10 @@ class ProductDescriptionChanged( DomainEvent ):
         domainEvent : object
         # Code
         domainEvent = ProductDescriptionChanged(
-            id          = ProductId( data['id'] ),
-            description = ProductDescription( data['description'] ),
-            eventId     = eventId,
-            timestamp   = timestamp
+            ProductId( data['id'] ),
+            ProductDescription( data['description'] ),
+            eventId,
+            timestamp
         )
         return domainEvent
 

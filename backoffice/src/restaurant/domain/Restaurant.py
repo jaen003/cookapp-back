@@ -4,7 +4,6 @@
  *
 """
 
-from src.shared.domain              import AggregateRoot
 from .valueObjects.RestaurantName   import RestaurantName
 from .valueObjects.RestaurantId     import RestaurantId
 from .valueObjects.RestaurantStatus import RestaurantStatus
@@ -15,7 +14,7 @@ from .valueObjects.RestaurantStatus import RestaurantStatus
  *
 """
 
-class Restaurant( AggregateRoot ):
+class Restaurant:
 
     """
      *
@@ -53,14 +52,5 @@ class Restaurant( AggregateRoot ):
         return self.__status
     
     @classmethod
-    def create( 
-        cls, 
-        id   : RestaurantId, 
-        name : RestaurantName
-    ) -> object:
-        self = cls(
-            id     = id,
-            name   = name,
-            status = RestaurantStatus.createEnabled()
-        )
-        return self
+    def create( cls, id : RestaurantId, name : RestaurantName ) -> object:
+        return cls( id, name, RestaurantStatus.createEnabled() )

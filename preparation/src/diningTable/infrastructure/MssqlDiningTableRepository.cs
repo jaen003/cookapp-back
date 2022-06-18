@@ -94,10 +94,10 @@ namespace preparation.src.diningTable.infrastructure {
                 return null;
             }
             diningTable = new DiningTable(
-                id           : new DiningTableId( reader["tab_id"].ToString() ),
-                number       : new DiningTableNumber( Int32.Parse( reader["tab_number"].ToString() ) ),
-                status       : new DiningTableStatus( Int32.Parse( reader["tab_status"].ToString() ) ),
-                restaurantId : new RestaurantId( reader["rest_id"].ToString() )
+                new DiningTableId( reader["tab_id"].ToString() ),
+                new DiningTableNumber( Int32.Parse( reader["tab_number"].ToString() ) ),
+                new DiningTableStatus( Int32.Parse( reader["tab_status"].ToString() ) ),
+                new RestaurantId( reader["rest_id"].ToString() )
             );
             return diningTable;
         }

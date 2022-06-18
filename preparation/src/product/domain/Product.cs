@@ -47,11 +47,7 @@ namespace preparation.src.product.domain {
         }
 
         public static Product create( ProductId id, ProductName name ) {
-            return new Product(
-                id     : id,
-                name   : name,
-                status : ProductStatus.createEnabled()
-            );
+            return new Product( id, name, ProductStatus.createEnabled() );
         }
 
         public void rename( ProductName newName ) {

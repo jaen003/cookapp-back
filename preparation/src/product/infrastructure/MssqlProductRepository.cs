@@ -92,9 +92,9 @@ namespace preparation.src.product.infrastructure {
                 return null;
             }
             product = new Product(
-                id     : new ProductId( reader["prod_id"].ToString() ),
-                name   : new ProductName( reader["prod_name"].ToString() ),
-                status : new ProductStatus( Int32.Parse( reader["prod_status"].ToString() ) )
+                new ProductId( reader["prod_id"].ToString() ),
+                new ProductName( reader["prod_name"].ToString() ),
+                new ProductStatus( Int32.Parse( reader["prod_status"].ToString() ) )
             );
             return product;
         }

@@ -72,9 +72,9 @@ class MysqlRestaurantRepository( RestaurantRepository ):
         if record is None:
             return None
         restaurant = Restaurant(
-            id     = RestaurantId( record[0] ),
-            name   = RestaurantName( record[1] ),
-            status = RestaurantStatus( record[2] )
+            RestaurantId( record[0] ),
+            RestaurantName( record[1] ),
+            RestaurantStatus( record[2] )
         )
         return restaurant
             
@@ -87,7 +87,7 @@ class MysqlRestaurantRepository( RestaurantRepository ):
         record     : list
         # Code
         query = 'SELECT rest_id, rest_name, rest_status FROM Restaurant ' \
-                'WHERE rest_status = 1 and rest_id = %s'
+                'WHERE rest_status = 1 AND rest_id = %s'
         try:
             connection = self.__databaseConnector.getConnection()
             cursor     = connection.cursor()

@@ -107,12 +107,12 @@ class MysqlEmployeeRepository( EmployeeRepository ):
         if record is None:
             return None
         employee = Employee(
-            id           = EmployeeId( record[0] ),
-            email        = EmployeeEmail( record[1] ),
-            name         = EmployeeName( record[2] ),
-            role         = EmployeeRole( record[3] ),
-            status       = EmployeeStatus( record[4] ),
-            restaurantId = RestaurantId( record[5] )
+            EmployeeId( record[0] ),
+            EmployeeEmail( record[1] ),
+            EmployeeName( record[2] ),
+            EmployeeRole( record[3] ),
+            EmployeeStatus( record[4] ),
+            RestaurantId( record[5] )
         )
         return employee
             

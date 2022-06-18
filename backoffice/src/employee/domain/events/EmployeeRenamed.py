@@ -70,9 +70,9 @@ class EmployeeRenamed( DomainEvent ):
         domainEvent : object
         # Code
         domainEvent = EmployeeRenamed(
-            id        = EmployeeId( data['id'] ),
-            name      = EmployeeName( data['name'] ),
-            eventId   = eventId,
-            timestamp = timestamp
+            EmployeeId( data['id'] ),
+            EmployeeName( data['name'] ),
+            eventId,
+            timestamp
         )
         return domainEvent

@@ -58,12 +58,4 @@ class EmployeeDeleted( DomainEvent ):
         timestamp : int, 
         data      : dict[str, str | int]
     ) -> object:
-        # Variables
-        domainEvent : object
-        # Code
-        domainEvent = EmployeeDeleted(
-            id        = EmployeeId( data['id'] ),
-            eventId   = eventId,
-            timestamp = timestamp
-        )
-        return domainEvent
+        return EmployeeDeleted( EmployeeId( data['id'] ), eventId, timestamp )

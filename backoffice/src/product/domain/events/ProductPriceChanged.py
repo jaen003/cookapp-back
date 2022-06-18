@@ -70,10 +70,10 @@ class ProductPriceChanged( DomainEvent ):
         domainEvent : object
         # Code
         domainEvent = ProductPriceChanged(
-            id        = ProductId( data['id'] ),
-            price     = ProductPrice( data['price'] ),
-            eventId   = eventId,
-            timestamp = timestamp
+            ProductId( data['id'] ),
+            ProductPrice( data['price'] ),
+            eventId,
+            timestamp
         )
         return domainEvent
 

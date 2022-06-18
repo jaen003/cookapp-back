@@ -23,9 +23,6 @@ namespace preparation.src.diningTable.domain {
         */
 
         public DiningTableId( string value ) : base( value ) {
-            if( isEmpty() ) {
-                throw new InvalidDiningTableIdException( value );
-            }
         }
 
     }

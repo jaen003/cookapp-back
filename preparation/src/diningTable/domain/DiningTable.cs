@@ -67,10 +67,10 @@ namespace preparation.src.diningTable.domain {
             RestaurantId      restaurantId
         ) {
             return new DiningTable(
-                id           : id,
-                number       : number,
-                status       : DiningTableStatus.createEnabled(),
-                restaurantId : restaurantId
+                id,
+                number,
+                DiningTableStatus.createEnabled(),
+                restaurantId
             );
         }
 

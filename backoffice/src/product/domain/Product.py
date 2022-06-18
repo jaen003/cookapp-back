@@ -89,45 +89,28 @@ class Product( AggregateRoot ):
         restaurantId : RestaurantId
     ) -> object:
         self = cls(
-            id           = id,
-            name         = name,
-            price        = price,
-            description  = description,
-            status       = ProductStatus.createEnabled(),
-            restaurantId = restaurantId,
+            id,
+            name,
+            price,
+            description,
+            ProductStatus.createEnabled(),
+            restaurantId
         )
-        self.recordEvent( ProductCreated(
-            id           = id,
-            name         = name,
-            price        = price,
-            description  = description,
-            restaurantId = restaurantId,
-        ) )
+        self.recordEvent( ProductCreated( id, name, price, description, restaurantId ) )
         return self
 
     def rename( self, newName : ProductName ) -> None:
         self.__name = newName
-        self.recordEvent( ProductRenamed(
-            id   = self.__id,
-            name = self.__name
-        ) )
+        self.recordEvent( ProductRenamed( self.__id, self.__name ) )
     
     def delete( self ) -> None:
         self.__status = ProductStatus.createDeleted()
-        self.recordEvent( ProductDeleted(
-            id = self.__id
-        ) )
+        self.recordEvent( ProductDeleted( self.__id ) )
     
     def changePrice( self, newPrice : ProductPrice ) -> None:
         self.__price = newPrice
-        self.recordEvent( ProductPriceChanged(
-            id    = self.__id,
-            price = self.__price
-        ) )
+        self.recordEvent( ProductPriceChanged( self.__id, self.__price ) )
     
     def changeDescription( self, newDescription : ProductDescription ) -> None:
         self.__description = newDescription
-        self.recordEvent( ProductDescriptionChanged(
-            id          = self.__id,
-            description = self.__description,
-        ) )
+        self.recordEvent( ProductDescriptionChanged( self.__id, self.__description ) )

@@ -70,10 +70,10 @@ class ProductRenamed( DomainEvent ):
         domainEvent : object
         # Code
         domainEvent = ProductRenamed(
-            id        = ProductId( data['id'] ),
-            name      = ProductName( data['name'] ),
-            eventId   = eventId,
-            timestamp = timestamp
+            ProductId( data['id'] ),
+            ProductName( data['name'] ),
+            eventId,
+            timestamp
         )
         return domainEvent
 

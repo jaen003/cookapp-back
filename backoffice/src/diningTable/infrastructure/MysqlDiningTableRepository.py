@@ -104,11 +104,11 @@ class MysqlDiningTableRepository( DiningTableRepository ):
         if record is None:
             return None
         diningTable = DiningTable(
-            id           = DiningTableId( record[0] ),
-            number       = DiningTableNumber( record[1] ),
-            description  = DiningTableDescription( record[2] ),
-            status       = DiningTableStatus( record[3] ),
-            restaurantId = RestaurantId( record[4] )
+            DiningTableId( record[0] ),
+            DiningTableNumber( record[1] ),
+            DiningTableDescription( record[2] ),
+            DiningTableStatus( record[3] ),
+            RestaurantId( record[4] )
         )
         return diningTable
             

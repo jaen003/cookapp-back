@@ -23,9 +23,6 @@ namespace preparation.src.product.domain {
         */
 
         public ProductId( string value ) : base( value ) {
-            if( isEmpty() ) {
-                throw new InvalidProductIdException( value );
-            }
         }
 
     }

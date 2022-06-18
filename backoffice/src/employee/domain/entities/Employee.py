@@ -81,34 +81,21 @@ class Employee( AggregateRoot ):
     def changeToWaiter( self ) -> None:
         if self.__role.isChef():
             self.__role = EmployeeRole.createWaiter()
-            self.recordEvent( EmployeeRoleChanged(
-                id   = self.__id,
-                role = self.__role
-            ) )
+            self.recordEvent( EmployeeRoleChanged( self.__id, self.__role ) )
     
     def changeToChef( self ) -> None:
         if self.__role.isWaiter():
             self.__role = EmployeeRole.createChef()
-            self.recordEvent( EmployeeRoleChanged(
-                id   = self.__id,
-                role = self.__role
-            ) )
+            self.recordEvent( EmployeeRoleChanged( self.__id, self.__role ) )
     
     def delete( self ) -> None:
         self.__status = EmployeeStatus.createDeleted()
-        self.recordEvent( EmployeeDeleted(
-            id = self.__id
-        ) )
+        self.recordEvent( EmployeeDeleted( self.__id ) )
     
     def rename( self, newName : EmployeeName ) -> None:
         self.__name = newName
-        self.recordEvent( EmployeeRenamed(
-            id   = self.__id,
-            name = self.__name
-        ) )
+        self.recordEvent( EmployeeRenamed( self.__id, self.__name ) )
     
     def block( self ) -> None:
         self.__status = EmployeeStatus.createBlocked()
-        self.recordEvent( EmployeeBlocked(
-            id = self.__id
-        ) )
+        self.recordEvent( EmployeeBlocked( self.__id ) )

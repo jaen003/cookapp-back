@@ -94,13 +94,13 @@ class ProductCreated( DomainEvent ):
         domainEvent : object
         # Code
         domainEvent = ProductCreated(
-            id           = ProductId( data['id'] ),
-            name         = ProductName( data['name'] ),
-            price        = ProductPrice( data['price'] ),
-            description  = ProductDescription( data['description'] ),
-            restaurantId = RestaurantId( data['restaurantId'] ),
-            eventId      = eventId,
-            timestamp    = timestamp
+            ProductId( data['id'] ),
+            ProductName( data['name'] ),
+            ProductPrice( data['price'] ),
+            ProductDescription( data['description'] ),
+            RestaurantId( data['restaurantId'] ),
+            eventId,
+            timestamp
         )
         return domainEvent
 

@@ -25,7 +25,7 @@ from src.diningTable.application    import DiningTableDescriptionChanger
  *
 """
 
-class EmployeePutController( FlaskView ):
+class DiningTablePutController( FlaskView ):
 
     """
      *

@@ -58,13 +58,5 @@ class ProductDeleted( DomainEvent ):
         timestamp : int, 
         data      : dict[str, str | int]
     ) -> object:
-        # Variables
-        domainEvent : object
-        # Code
-        domainEvent = ProductDeleted(
-            id        = ProductId( data['id'] ),
-            eventId   = eventId,
-            timestamp = timestamp
-        )
-        return domainEvent
+        return ProductDeleted( ProductId( data['id'] ), eventId, timestamp )
 

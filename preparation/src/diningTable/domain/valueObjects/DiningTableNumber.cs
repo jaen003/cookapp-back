@@ -18,28 +18,11 @@ namespace preparation.src.diningTable.domain {
 
         /* 
          * 
-         * Constants
-         *
-        */
-
-        private const int MINIMUN_NUMBER = 1;
-        private const int MAXIMUM_NUMBER = 255;
-
-        /* 
-         * 
          * Methods
          *
         */
 
         public DiningTableNumber( int value ) : base( value ) {
-            if( !isValid() ) {
-                throw new InvalidDiningTableNumberException( value );
-            }
-        }
-
-        private bool isValid() {
-            return isGreaterThanOrEqual( new IntValueObject( MINIMUN_NUMBER ) ) &&
-                isLessThanOrEqual( new IntValueObject( MAXIMUM_NUMBER ) );
         }
 
     }

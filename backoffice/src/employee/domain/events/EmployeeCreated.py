@@ -94,12 +94,12 @@ class EmployeeCreated( DomainEvent ):
         domainEvent : object
         # Code
         domainEvent = EmployeeCreated(
-            id           = EmployeeId( data['id'] ),
-            email        = EmployeeEmail( data['email'] ),
-            name         = EmployeeName( data['name'] ),
-            role         = EmployeeRole( data['role'] ),
-            restaurantId = RestaurantId( data['restaurantId'] ),
-            eventId      = eventId,
-            timestamp    = timestamp
+            EmployeeId( data['id'] ),
+            EmployeeEmail( data['email'] ),
+            EmployeeName( data['name'] ),
+            EmployeeRole( data['role'] ),
+            RestaurantId( data['restaurantId'] ),
+            eventId,
+            timestamp
         )
         return domainEvent

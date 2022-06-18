@@ -70,10 +70,10 @@ class RestaurantCreated( DomainEvent ):
         domainEvent : object
         # Code
         domainEvent = RestaurantCreated(
-            id        = RestaurantId( data['id'] ),
-            name      = RestaurantName( data['name'] ),
-            eventId   = eventId,
-            timestamp = timestamp
+            RestaurantId( data['id'] ),
+            RestaurantName( data['name'] ),
+            eventId,
+            timestamp
         )
         return domainEvent
 
