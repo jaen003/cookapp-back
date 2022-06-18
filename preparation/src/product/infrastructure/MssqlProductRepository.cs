@@ -58,6 +58,30 @@ namespace preparation.src.product.infrastructure {
             } catch( SqlException exc ) {
                 return false;
             }            
+        }
+
+        public bool update( Product product ) {
+            // Variables
+            String        query;
+            SqlConnection connection;
+            SqlCommand    command;
+            // Code
+            query = "UPDATE Product SET prod_name = @name, prod_status = @status " +
+                    "WHERE prod_id = @id";
+            try {
+                using( connection = databaseConnector.getConnection() ) {
+                    using( command = new SqlCommand( query, connection ) ){
+                        command.Parameters.AddWithValue( "@name", product.getName().getValue() );
+                        command.Parameters.AddWithValue( "@status", product.getStatus().getValue() );
+                        command.Parameters.AddWithValue( "@id", product.getId().getValue() );
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
+                return true;
+            } catch( SqlException exc ) {
+                return false;
+            }            
         }        
 
         private Product? mapEntity( SqlDataReader reader ) {
