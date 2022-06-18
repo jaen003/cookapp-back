@@ -16,6 +16,8 @@ namespace preparation.src.product.domain {
 
         bool save( Product product );
 
+        bool update( Product product );
+
         Product? findById( ProductId id );
 
     }

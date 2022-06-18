@@ -54,6 +54,10 @@ namespace preparation.src.product.domain {
             );
         }
 
+        public void rename( ProductName newName ) {
+            name = newName;
+        }
+
     }
 
 }
